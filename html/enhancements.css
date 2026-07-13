@@ -1,0 +1,236 @@
+﻿.story-gate-box {
+  background: rgba(0, 0, 0, 0.72);
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  border-radius: 16px;
+  padding: 14px;
+  margin: 18px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.story-gate-title {
+  margin: 0 0 10px;
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.story-gate-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.story-gate-list li {
+  margin: 6px 0;
+  color: #f4f4f4;
+}
+
+.story-gate-status {
+  display: inline-block;
+  min-width: 22px;
+  font-weight: 700;
+}
+
+.story-gate-note {
+  margin-top: 10px;
+  color: #cde7ff;
+  font-size: 14px;
+}
+
+.quiz-locked {
+  opacity: 0.55;
+  filter: grayscale(0.25);
+  pointer-events: none;
+}
+
+.quiz-unlocked {
+  opacity: 1;
+  filter: none;
+  transition: all 0.35s ease;
+}
+
+.enhanced-ui .glass-card {
+  backdrop-filter: blur(3px);
+}
+
+.enhanced-ui .story-list li,
+.enhanced-ui .team div,
+.enhanced-ui .content,
+.enhanced-ui .login-container {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.enhanced-ui .story-list li:hover,
+.enhanced-ui .team div:hover,
+.enhanced-ui .content:hover,
+.enhanced-ui .login-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+#logoutBtn {
+  margin-top: 12px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  background: #ff5252;
+  color: #fff;
+  cursor: pointer;
+}
+
+#logoutBtn:hover {
+  background: #e04242;
+}
+
+.lang-toggle {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  z-index: 2100;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: #009688;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.lang-toggle:hover {
+  background: #007d72;
+}
+
+.lang-en {
+  text-align: left;
+}
+
+.clickable-story-image {
+  cursor: zoom-in;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 20px;
+}
+
+.image-lightbox.open {
+  display: flex;
+}
+
+.image-lightbox-inner {
+  max-width: 95vw;
+  max-height: 95vh;
+  text-align: center;
+  position: relative;
+}
+
+.image-lightbox-img {
+  max-width: 100%;
+  max-height: 82vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.4);
+}
+
+.image-lightbox-caption {
+  margin-top: 10px;
+  color: #f6f6f6;
+  font-size: 14px;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: #ff5252;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.video-fallback-link {
+  display: inline-block;
+  margin: 8px 0 14px;
+  color: #ffd54f;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.story-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  justify-content: center;
+}
+
+.story-nav a {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.story-nav a:hover {
+  background: rgba(255, 215, 0, 0.35);
+}
+
+.extra-info {
+  margin: 16px 0;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fffde7;
+  font-weight: 700;
+}
+
+.designer-line {
+  text-align: center;
+  margin-top: 18px;
+  color: #ffd54f;
+  font-weight: 700;
+}
+
+.profile-badge {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #00bfa5, #1de9b6);
+  color: #003a35;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+.premium-user #userBadgeChip {
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.25), 0 0 16px rgba(0,255,200,0.45);
+}
+
+.premium-user .sidebar {
+  border-left: 3px solid #1de9b6;
+}
+
+.premium-user #avatar {
+  border-color: #1de9b6 !important;
+  box-shadow: 0 0 18px rgba(29,233,182,0.45);
+}

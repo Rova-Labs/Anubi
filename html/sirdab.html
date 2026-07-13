@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>سرداب الخلود - وادي الملوك</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('background.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgba(0, 0, 30, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: lightgreen;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid gold;
+    }
+
+    /* صناديق المحتوى الموحدة */
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: rgba(0, 0, 30, 0.85);
+      border-radius: 25px;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    /* كلاس الروبوت الموحد لضمان عدم التعارض */
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid gold;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 20px gold;
+      transform: scale(1.05);
+    }
+
+    /* تنسيق التلميح النصي للإيقاف */
+    .hint {
+      font-size: 14px;
+      color: #cccccc;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    h1, h2 {
+      color: rgb(167, 224, 136);
+      text-align: center;
+    }
+
+    p, label {
+      font-size: 19px;
+      line-height: 1.8;
+      color: #f0f0f0;
+    }
+
+    /* إطار أسرار الفراعنة */
+    .mystery-frame {
+      border: 2px dashed #ffd700;
+      background-color: rgba(255, 215, 0, 0.05);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      border-right: 10px solid gold;
+    }
+    .mystery-frame h3 {
+      margin-top: 0;
+      color: gold;
+      font-size: 22px;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 15px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* معرض الصور الموحد */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+    .gallery img {
+      width: 30%;
+      min-width: 200px;
+      border-radius: 12px;
+      transition: 0.3s;
+      border: 2px solid #444;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px gold;
+      border-color: gold;
+    }
+
+    /* تصميم نافذة تكبير الصور الموحد (Lightbox) */
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid gold;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid rgb(243, 217, 26);
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: rgb(234, 231, 14);
+      color: black;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: darkorange;
+      transform: translateY(-2px);
+    }
+
+    .back-link {
+      display: block;
+      background-color: rgb(166, 143, 12);
+      color: #000;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      text-align: center;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      .gallery img { width: 90%; }
+      iframe { height: 200px; }
+      .container, .interactive-container { margin: 10px; padding: 20px; }
+      p, label { font-size: 17px; }
+      .story-teller img { width: 130px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- نافذة تكبير الصور الموحدة للمنصة -->
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- التحكم باللمس والنطق المحمي من التداخلات -->
+    <img src="anobi (2).jpg" alt="أنوبي" 
+         onclick="event.stopPropagation(); playPerfectStory()"
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p style="color: gold; font-weight: bold; margin-bottom: 0;">أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>سرداب الخلود - وادي الملوك</h1>
+    
+    <div id="story">
+      <p>يقع وادي الملوك في مدينة الأقصر العريقة، وهو المكان الذي اختاره ملوك الدولة الحديثة في مصر القديمة ليكون مقراً لراحة أجسادهم الأبدية. بدلاً من بناء الأهرامات الضخمة التي كانت تجذب اللصوص، قرر الملوك حفر مقابرهم في قلب الجبل الصخري لتكون مخفية ومحمية.</p>
+      
+      <p>يحتوي الوادي على أكثر من ثلاث وستين مقبرة ملكية، صُممت كممرات طويلة معقدة تنتهي بحجرة الدفن. الجدران ليست مجرد صخور, بل هي لوحات فنية مذهلة تحكي رحلة الملك إلى العالم الآخر، مرسومة بألوان طبيعية لا تزال زاهية رغم مرور آلاف السنين.</p>
+      
+      <p>أشهر هذه المقابر هي مقبرة الملك الشاب توت عنخ آمون، التي اكتشفها هاورد كارتر عام ألف وتسعمائة واثنين وعشرين. كانت المقبرة الوحيدة التي وُجدت كاملة بكنوزها الذهبية، مما أذهل العالم وجعل وادي الملوك أهم موقع أثري على وجه الأرض.</p>
+    </div>
+
+    <div class="mystery-frame">
+      <h3>🔍 هل تعلم؟</h3>
+      <p>أن المهندسين المصريين القدماء كانوا يستخدمون المرايا لعكس ضوء الشمس إلى داخل المقابر المظلمة أثناء حفرها وتلوينها؟ كما أن الوادي يضم مقابر ليست للملوك فقط، بل لبعض النبلاء وحتى لحيوانات ملكية مدللة!</p>
+    </div>
+  </div>
+
+  <div class="interactive-container">
+    <h2>📺 رحلة بصرية داخل الوادي</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/udE4ehMwChc?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/mCqG7hv5X-s?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/Ju3OdGrhpTY?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ صور من عبق التاريخ</h2>
+    <div class="gallery">
+      <!-- ربط الصور بنظام الـ Lightbox الموحد -->
+      <img src="tot ankh amon.jpg" alt="مقبرة توت عنخ آمون" onclick="openLightbox(this.src)">
+      <img src="wadyy.jpg" alt="منظر عام للوادي" onclick="openLightbox(this.src)">
+      <img src="ma3t.jpg" alt="محاكمة الموتى" onclick="openLightbox(this.src)">
+      <img src="توت عنخ امون.jpg" alt="تابوت توت عنخ امون" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 تحدي المستكشف الصغير</h2>
+    <form class="quiz">
+      <label>1. في أي مدينة مصرية يقع هذا الوادي العظيم؟</label>
+      <input type="text" id="q1" placeholder="اكتب اسم المدينة">
+
+      <label>2. كم عدد المقابر التي تم اكتشافها في الوادي حتى الآن؟</label>
+      <input type="text" id="q2" placeholder="اكتب الرقم">
+
+      <label>3. من هو المستكشف الذي وجد كنوز توت عنخ آمون؟</label><br>
+      <input type="radio" name="q3" value="صحيح"> هاورد كارتر<br>
+      <input type="radio" name="q3" value="خطأ"> زاهي حواس<br>
+      <input type="radio" name="q3" value="خطأ"> شامبليون<br>
+
+      <button type="button" onclick="checkAnswers()">تحقق من إجاباتك</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 العودة للرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+
+  <script>
+    // 1. نظام النقاط المشترك
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // 2. دالة فتح تكبير الصور الموحدة (Lightbox)
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    // 3. دالة الإيقاف السريع عند الضغط مرتين
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    // 4. نظام النطق الاحترافي والفلترة الموحدة دون إيموجي
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); 
+
+      const storyToRead = "مرحباً بك يا بطل في وادي الملوك، استعد لاكتشاف أسرار الفراعنة العظيمة. يقع وادي الملوك في مدينة الأقصر العريقة، وهو المكان الذي اختاره ملوك الدولة الحديثة في مصر القديمة ليكون مقراً لراحة أجسادهم الأبدية. بدلاً من بناء الأهرامات الضخمة التي كانت تجذب اللصوص، قرر الملوك حفر مقابرهم في قلب الجبل الصخري لتكون مخفية ومحمية. يحتوي الوادي على أكثر من ثلاث وستين مقبرة ملكية، صُممت كممرات طويلة معقدة تنتهي بحجرة الدفن. الجدران ليست مجرد صخور، بل هي لوحات فنية مذهلة تحكي رحلة الملك إلى العالم الآخر، مرسومة بألوان طبيعية لا تزال زاهية رغم مرور آلاف السنين. أشهر هذه المقابر هي مقبرة الملك الشاب توت عنخ آمون، التي اكتشفها هاورد كارتر عام ألف وتسعمائة واثنين وعشرين. كانت المقبرة الوحيدة التي وُجدت كاملة بكنوزها الذهبية، مما أذهل العالم وجعل وادي الملوك أهم موقع أثري على وجه الأرض. معلومة إضافية، هل تعلم أن المهندسين المصريين القدماء كانوا يستخدمون المرايا لعكس ضوء الشمس إلى داخل المقابر المظلمة أثناء حفرها وتلوينها؟ كما أن الوادي يضم مقابر ليست للملوك فقط، بل لبعض النبلاء وحتى لحيوانات ملكية مدللة!";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA"; 
+      utterance.rate = 0.85;    
+      utterance.pitch = 0.9;    
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 5. نظام التحقق من الإجابات وتغذية الصوت المرتدة
+    function checkAnswers() {
+      const q1 = document.getElementById("q1").value.trim();
+      let q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+
+      const map = { '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9' };
+      q2 = q2.replace(/[٠-٩]/g, d => map[d]);
+
+      let score = 0;
+      if (q1.includes("الأقصر") || q1.includes("الاقصر")) score++;
+      if (q2 === "63" || q2 === "60") score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      const result = document.getElementById("result");
+      
+      window.speechSynthesis.cancel();
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "مذهل! لقد أصبحت خبيراً في علم المصريات ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+        
+        feedbackVoice.text = "أحسنت يا بطل! إجاباتك صحيحة تماماً.";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `لقد حصلت على ${score} من 3. راجع القصة وحاول مجدداً! ❌`;
+        result.style.color = "tomato";
+        
+        feedbackVoice.text = "حاول مرة أخرى، المعلومات موجودة في النص بالأعلى.";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+</body>
+</html>

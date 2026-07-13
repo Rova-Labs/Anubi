@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>حادثة دنشواي - القرية التي أيقظت مصر</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('98.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgba(139, 0, 0, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffd700;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #b22222;
+    }
+
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: rgba(20, 20, 20, 0.85);
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid rgba(178, 34, 34, 0.3);
+      backdrop-filter: blur(5px);
+    }
+
+    .robot {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .robot img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid #b22222;
+    }
+    .robot img:hover {
+      box-shadow: 0 0 20px #ff4500;
+      transform: scale(1.05);
+    }
+
+    h1, h2 {
+      color: #ffcc99;
+      text-align: center;
+    }
+
+    p, label {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #e0e0e0;
+    }
+
+    .memorial-frame {
+      border: 2px double #b22222;
+      background-color: rgba(139, 0, 0, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      text-align: center;
+      position: relative;
+    }
+    .memorial-frame::before {
+      content: "📜";
+      font-size: 30px;
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e1e1e;
+      padding: 0 10px;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 12px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 2px solid #b22222;
+    }
+
+    /* تنسيق معرض الصور */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 30% !important;
+      border-radius: 12px !important;
+      max-width: 300px !important;
+      transition: transform 0.3s ease !important;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05) !important;
+      box-shadow: 0 0 15px #ff9800 !important;
+      z-index: 10;
+      position: relative;
+    }
+
+    /* تنسيق نافذة التكبير (Lightbox) */
+    #lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #ffcc99;
+      border-radius: 10px;
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #b22222;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.05);
+      color: white;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: #b22222;
+      color: white;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ff4500;
+    }
+
+    .back-link {
+      display: block;
+      background-color: #ffcc99;
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      text-align: center;
+      width: fit-content;
+    }
+
+    @media (max-width: 768px) {
+      .gallery img { width: 90% !important; }
+      iframe { height: 200px; }
+      .container, .interactive-container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+      .robot img { width: 130px; }
+      h1 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="robot">
+    <img src="anobi6.jpg" alt="أنوبي" onclick="readStory()">
+    <p style="color: #ffd700; font-weight: bold;">أنوبي</p>
+  </div>
+
+  <div class="container">
+    <h1>القرية التي أيقظت مصر - حادثة دنشواي</h1>
+    
+    <div id="story">
+      <p>في يوم حار من أيام شهر يونيو عام 1906، وتحديداً في قرية "دنشواي" الهادئة بمحافظة المنوفية، بدأت مأساة حفرت مجراها في تاريخ مصر الحديث. بدأت القصة عندما أقبل خمسة من الضباط الإنجليز التابعين لجيش الاحتلال البريطاني لرحلة صيد الحمام بالقرب من أجران القمح التي يملكها فلاحو القرية، ولم يبالِ هؤلاء الضباط بتحذيرات الأهالي من خطورة إطلاق النار قرب المحاصيل الجافة وأبراج الحمام التي تعد مصدر رزقهم الأساسي.</p>
+      <p>وفجأة، انطلقت رصاصة طائشة من بندقية أحد الضباط لتشعل النار في أجران القمح، ولم تتوقف الكارثة عند هذا الحد، بل أصابت رصاصة أخرى امرأة من القرية تُدعى "أم صابر" فسقطت غارقة في دمائها. ثار غضب الأهالي واندفعوا نحو الضباط للدفاع عن أنفسهم وممتلكاتهم المعترق بها، فحاول الضباط الفرار مسرعين لمسافات طويلة تحت أشعة الشمس الحارقة.</p>
+      <p>أثناء هذا الهروب السريع، أصيب أحد الضباط بضربة شمس شديدة وسقط ميتاً في الطريق. ورغم أن أحد الفلاحين المصريين من القرية المجاورة حاول إسعافه وتقديم الماء له، إلا أن قوات الاحتلال التي وصلت إلى المكان ظنت أن الفلاح هو من قتله، فاعتدت عليه بالضرب المبرح حتى فارق الحياة، لتبدأ بعدها حملة انتقام عشوائية ووحشية ضد القرية بأكملها.</p>
+      <p>لم تكتفِ سلطات الاحتلال بذلك، بل شكلت محكمة عسكرية جائرة وسريعة ترأسها بطرس غالي، وافتقرت لأدنى معايير العدالة الإنسانية. وصدرت أحكام قاسية وصادمة هزت الوجدان المصري: الإعدام شنقاً لأربعة من شيوخ وشباب القرية، والسجن بالأشغال الشاقة لفترات طويلة والجلد لآخرين. والأنكى من ذلك غطرسة الاحتلال، حيث أُقيمت المشانق وآلات الجلد داخل قرية دنشواي ونُفذت الأحكام أمام أعين أمهات وزوجات وأطفال المحكوم عليهم لترهيب الشعب.</p>
+    </div>
+
+    <div class="memorial-frame">
+      <h3>🕯️ رمز الكرامة</h3>
+      <p>لم يمت صوت دنشواي بتنفيذ الأحكام، بل تحولت الصرخة إلى ثورة وعي قادها الزعيم مصطفى كامل، مما أجبر بريطانيا على عزل "اللورد كرومر" وأيقظ الروح الوطنية في قلب كل مصري.</p>
+    </div>
+  </div>
+
+  <div class="interactive-container">
+    <h2>📺 شاهد القصة بصرياً</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/Y9UA4WXwbIk?enablejsapi=1" title="حادثة دنشواي 1" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/kP2n014AVgg?enablejsapi=1" title="حادثة دنشواي 2" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/TI7Qi9ikMFY?enablejsapi=1" title="حادثة دنشواي 3" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/2EgV_-vz6Xw?enablejsapi=1" title="حادثة دنشواي 4" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ معرض الصور التاريخية</h2>
+    <div class="gallery">
+      <img src="دنشواي1.jpg" alt="محاكمة دنشواي" onclick="openLightbox(this.src)">
+      <img src="متحف دنشواي.jpg" alt="متحف دنشواي" onclick="openLightbox(this.src)">
+      <img src="محاكمة دنشواي.jpg" alt="تنفيذ حكم الإعدام" onclick="openLightbox(this.src)">
+      <img src="50.jpg" alt="جلد الاحتلال للفلاحين" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 تحدي المعلومات</h2>
+    <form class="quiz">
+      <label>1. في أي عام وقعت حادثة دنشواي؟</label>
+      <input type="text" id="q1" placeholder="اكتب السنة مثلاً: 1900">
+
+      <label>2. ما اسم الزعيم الذي استخدم الحادثة للتنديد بالاحتلال دولياً؟</label>
+      <input type="text" id="q2" placeholder="اكتب اسم الزعيم">
+
+      <label>3. ماذا كانت نتيجة الضغط الشعبي بعد الحادثة؟</label><br>
+      <input type="radio" name="q3" value="صحيح"> عزل اللورد كرومر<br>
+      <input type="radio" name="q3" value="خطأ"> بناء سد أسوان<br>
+      <input type="radio" name="q3" value="خطأ"> إعلان الحرب العالمية<br>
+
+      <button type="button" onclick="checkAnswer()">تأكد من إجابتك</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 العودة للصفحة الرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+
+  <script>
+    // دالة فتح الصورة لتكبيرها
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox').style.display = 'flex';
+    }
+
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // دالة التحدث
+    function speak(text) {
+      // إيقاف أي كلام يقرأ حالياً لتجنب التداخل
+      window.speechSynthesis.cancel(); 
+      const msg = new SpeechSynthesisUtterance(text);
+      msg.lang = "ar-EG";
+      window.speechSynthesis.speak(msg);
+    }
+
+    // دالة جلب وقراءة القصة فقط
+    function readStory() {
+      // جلب النص الموجود داخل قسم story فقط
+      const storyText = document.getElementById("story").innerText;
+      speak(storyText);
+    }
+
+    function checkAnswer() {
+      const q1 = document.getElementById("q1").value.trim();
+      const q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const result = document.getElementById("result");
+
+      let score = 0;
+      if (q1.includes("1906")) score++;
+      if (q2.includes("مصطفى كامل")) score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      if (score === 3) {
+        result.textContent = "مذهل! أنت ملم بتاريخ وطنك ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+        speak("أحسنت! إجاباتك صحيحة تماماً.");
+      } else {
+        result.textContent = `لقد حصلت على ${score} من 3. حاول مرة أخرى!`;
+        result.style.color = "tomato";
+        speak("لا بأس، المحاولة هي طريق التعلم.");
+      }
+    }
+  </script>
+</body>
+</html>

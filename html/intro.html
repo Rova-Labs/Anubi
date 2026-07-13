@@ -1,0 +1,387 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>من نحن - أنوبي وكنوز الحضارة</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    /* الهوية البصرية الملكية الموحدة */
+    :root {
+      --primary-gold: #d4af37;
+      --light-gold: #ffd700;
+      --dark-gold: #aa7c11;
+      --dark-blue: #020b24;
+      --royal-blue: #0a1931;
+      --glass-dark: rgba(2, 11, 36, 0.88);
+      --neon-gold: 0 0 20px rgba(255, 215, 0, 0.3);
+    }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      background: url('من نحن 2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      background-color: var(--dark-blue);
+    }
+
+    /* الطبقة الزجاجية الخلفية المعززة بالتدرج الملكي */
+    .overlay {
+      background: linear-gradient(135deg, rgba(2, 11, 36, 0.92), rgba(10, 25, 49, 0.85));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* مصفوفة الرموز الفرعونية الطافية والمتحركة في الخلفية */
+    .hieroglyph-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .glyph {
+      position: absolute;
+      color: rgba(255, 215, 0, 0.06); /* شفافية مثالية لضمان مقروئية النصوص */
+      font-size: clamp(40px, 6vw, 80px);
+      font-family: Arial, sans-serif;
+      user-select: none;
+      animation: floatGlyph 22s infinite ease-in-out alternate;
+    }
+
+    /* توزيع عشوائي واحترافي لحركة الرموز */
+    .glyph:nth-child(1) { left: 5%; top: 10%; animation-delay: 0s; animation-duration: 20s; }
+    .glyph:nth-child(2) { left: 85%; top: 20%; animation-delay: 3s; animation-duration: 24s; }
+    .glyph:nth-child(3) { left: 10%; top: 70%; animation-delay: 1.5s; animation-duration: 26s; }
+    .glyph:nth-child(4) { left: 80%; top: 65%; animation-delay: 5s; animation-duration: 18s; }
+    .glyph:nth-child(5) { left: 45%; top: 80%; animation-delay: 7s; animation-duration: 25s; }
+
+    @keyframes floatGlyph {
+      0% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); }
+      50% { transform: translateY(-35px) translateX(15px) rotate(180deg) scale(1.1); color: rgba(255, 215, 0, 0.1); }
+      100% { transform: translateY(-70px) translateX(-10px) rotate(360deg) scale(1); }
+    }
+
+    /* غلاف المحتوى لضمان بقائه فوق طبقة الرموز */
+    .main-content-wrapper {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* شريط علوي زجاجي فاخر */
+    header {
+      background: rgba(2, 11, 36, 0.85);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid var(--primary-gold);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    }
+
+    .header-points {
+      font-size: 18px;
+      font-weight: bold;
+      color: var(--light-gold);
+      text-shadow: 0 0 10px rgba(255,215,0,0.3);
+    }
+    
+    .header-badge {
+      background: linear-gradient(135deg, #8a6f27, var(--dark-gold));
+      color: var(--light-gold);
+      padding: 4px 15px;
+      border-radius: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      border: 1px solid var(--light-gold);
+    }
+
+    /* الروبوت أنوبي بتأثير الهالة المشعة */
+    .robot {
+      text-align: center;
+      margin: 40px 0 20px 0;
+    }
+    .robot img {
+      width: 160px;
+      height: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 4px solid var(--primary-gold);
+      padding: 6px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0.4) 70%);
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), var(--neon-gold);
+      animation: auraPulse 3s infinite alternate;
+    }
+    @keyframes auraPulse {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+      100% { box-shadow: 0 0 35px rgba(255, 215, 0, 0.7); }
+    }
+    .robot img:hover {
+      transform: scale(1.1) translateY(-5px);
+      border-color: var(--light-gold);
+    }
+
+    /* تأثير الوميض الذهبي للعناوين الرئيسية */
+    h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      background: linear-gradient(to right, #d4af37 20%, #ffd700 40%, #ffd700 60%, #d4af37 80%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shineGold 4s linear infinite;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+    @keyframes shineGold {
+      to { background-position: 200% center; }
+    }
+
+    h2 {
+      color: var(--light-gold);
+      border-bottom: 2px dashed rgba(212, 175, 55, 0.3);
+      padding-bottom: 8px;
+      margin-top: 35px;
+      font-weight: 800;
+    }
+
+    /* صناديق الزجاج المصقول الحامية للمحتوى */
+    .container, .interactive-container {
+      max-width: 900px;
+      margin: 25px auto;
+      padding: 35px;
+      background: var(--glass-dark);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 24px;
+      box-sizing: border-box;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    p {
+      line-height: 1.9;
+      font-size: 18px;
+      color: #e0f7fa;
+      text-align: justify;
+    }
+
+    /* شبكة وبطاقات فريق العمل الاحترافية */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .member-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 25px;
+      border-radius: 18px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .member-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(255, 215, 0, 0.15));
+      transform: translateX(100%);
+      transition: 0.5s ease;
+    }
+    .member-card:hover::before {
+      transform: translateX(-100%);
+    }
+    .member-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-8px);
+      border-color: var(--light-gold);
+      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.25);
+    }
+    .member-card span {
+      display: inline-block;
+      color: var(--light-gold);
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+      background: rgba(212, 175, 55, 0.15);
+      padding: 3px 12px;
+      border-radius: 10px;
+    }
+    .member-card h3 {
+      margin: 5px 0 0 0;
+      font-size: 22px;
+      color: white;
+      font-weight: 700;
+    }
+
+    /* زر العودة الأنيق المتوهج */
+    .back-link {
+      display: block;
+      background: linear-gradient(135deg, var(--dark-gold), var(--primary-gold));
+      color: #020b24;
+      font-weight: 900;
+      font-size: 17px;
+      padding: 14px 35px;
+      text-decoration: none;
+      border-radius: 12px;
+      margin: 40px auto;
+      text-align: center;
+      width: fit-content;
+      transition: 0.4s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), var(--neon-gold);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .back-link:hover {
+      background: linear-gradient(135deg, #fff, var(--light-gold));
+      transform: translateY(-3px);
+      box-shadow: 0 12px 25px var(--light-gold);
+    }
+
+    /* توافق كامل مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      .container, .interactive-container { margin: 15px; padding: 22px; }
+      p { font-size: 16px; line-height: 1.8; }
+      .robot img { width: 130px; height: 130px; }
+      header { padding: 12px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+  
+  <!-- مصفوفة الأيقونات الطافية بالخلفية -->
+  <div class="hieroglyph-bg">
+    <div class="glyph">𓂀</div>
+    <div class="glyph">☥</div>
+    <div class="glyph">𓆣</div>
+    <div class="glyph">𓋹</div>
+    <div class="glyph">𓂀</div>
+  </div>
+
+  <div class="main-content-wrapper">
+    <header>
+      <div class="header-points">🏆 نقاطك: <span id="points">0</span></div>
+      <div class="header-badge" id="explorer-title">مستكشف مبتدئ</div>
+    </header>
+
+    <main class="robot">
+      <img src="من نحن 1.jpg" alt="anobi" onclick="speakWelcome()">
+      <p style="color: var(--light-gold); font-weight: 900; font-size: 20px; margin-top: 10px;">أنوبي المرشد الذكي</p>
+    </main>
+
+    <section class="container">
+      <h1>من نحن</h1>
+      <p>
+        نحن فريق <strong style="color: var(--light-gold);">"المبدعين"</strong>، مطورو موقع <strong style="color: var(--light-gold);">"أنوبي وكنوز الحضارة"</strong>. هدفنا الأسمى هو إحياء التراث المصري العريق وتقديمه للأجيال الجديدة بطريقة تفاعلية استثنائية تجمع بين المرح، الشغف، وأحدث تقنيات التعليم التكنولوجي الرقمي.
+      </p>
+
+      <h2>🌟 فكرة الموقع</h2>
+      <p>
+        بدأت الفكرة لكسر جمود التعليم التلقيني التقليدي، حيث قمنا بتوظيف تقنيات التفاعل الرقمي من خلال الروبوت المساعد "أنوبي" ليصبح رفيقاً ذكياً للأطفال، يشرح لهم التاريخ المفقود، ويقودهم في رحلات استكشافية شيقة عبر الفيديوهات والصور والمسابقات الحركية الممتعة.
+      </p>
+
+      <h2>🤖 لماذا "أنوبي"؟</h2>
+      <p>
+        استلهمنا الاسم من "أنوبيس" في الحضارة المصرية القديمة، والذي كان يُعرف في المتون القديمة بالمرشد والحامي. روبوتنا الحالي "أنوبي" يتقمص دور هذا المرشد البارع الذي يحمي المعلومة التاريخية الصحيحة ويوجه المستكشفين الصغار من سن 6 إلى 12 سنة بأسلوب مبسط، شيق، وآمن تماماً.
+      </p>
+    </section>
+
+    <section class="interactive-container">
+      <h2>👥 عقول خلف المشروع</h2>
+      <div class="team-grid">
+        <div class="member-card">
+          <span>مطور ومبرمج المشروع</span>
+          <h3>Rowayda Mohammed</h3>
+        </div>
+        <div class="member-card">
+          <span>مشرف وموجه المشروع</span>
+          <h3>Mrs. Abeer Mahmoud</h3>
+        </div>
+      </div>
+    </section>
+
+    <a class="back-link" href="home.html">🔙 العودة للصفحة الرئيسية</a>
+
+  </div>
+</div>
+
+<script src="core.js"></script>
+<script src="site-fixes.js"></script>
+<script>
+  // محرك احتساب الألقاب الديناميكي (Backend منطقي لمزامنة الألقاب)
+  function calculateTitle(points) {
+    if (points >= 1000) return "👑 مستكشف أسطوري خارق";
+    if (points >= 900)  return "📝 كاتب المعابد الملكي";
+    if (points >= 800)  return "☀️ حامل مفتاح الحياة";
+    if (points >= 700)  return "🦅 عالم المصريات البارع";
+    if (points >= 600)  return "⚔️ أمير الفراعنة الشجاع";
+    if (points >= 500)  return "📜 الحكيم الفرعوني الكبير";
+    if (points >= 400)  return "🔺 محقق أسرار الأهرامات";
+    if (points >= 300)  return "🔐 صائد الأسرار الخفية";
+    if (points >= 200)  return "🏰 حارس التاريخ المصري";
+    if (points >= 150)  return "🏺 خبير الآثار المتميز";
+    if (points >= 100)  return "⭐ المستكشف المتميز";
+    if (points >= 50)   return "🔍 المستكشف";
+    return "🥚 مستكشف مبتدئ";
+  }
+
+  // تحديث النقاط واللقب من المتصفح عند التحميل
+  function initializeData() {
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+    
+    // ربط اللقب بالنقاط فورياً
+    const userTitle = calculateTitle(points);
+    document.getElementById("explorer-title").innerText = userTitle;
+  }
+
+  // نطق الترحيب الاحترافي المحدث مع تصفية الإيموجي تلقائياً لمنع قراءتها صوتياً بشكل خاطئ
+  function speakWelcome() {
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    const rawTitle = calculateTitle(points);
+    const cleanTitle = rawTitle.replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDC00-\uDFFF]/g, '');
+
+    const text = `مرحباً بك في صفحة من نحن.. رتبتك الحالية هي ${cleanTitle}. تعرف على عقول فريق المبدعين خلف مشروع أنوبي وكنوز الحضارة!`;
+    
+    const msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "ar-EG";
+    
+    // إلغاء أي نطق سابق فوراً لتفادي تداخل الأصوات
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(msg);
+  }
+
+  // تشغيل التهيئة بمجرد تحميل النافذة
+  window.onload = initializeData;
+</script>
+
+</body>
+</html>

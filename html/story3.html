@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>قرية تونس - أرض الفخار</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('Egypt.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: rgba(0,0,50,0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: gold;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid gold;
+    }
+
+    /* صناديق المحتوى الموحدة */
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: rgba(0, 0, 30, 0.85);
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    /* كلاس الروبوت الموحد لحماية السكربتات */
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+      border: 3px solid gold;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 20px gold;
+      transform: scale(1.05);
+    }
+
+    /* تنسيق التلميح النصي للإيقاف الموحد */
+    .hint {
+      font-size: 14px;
+      color: #cccccc;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    h1 {
+      color: rgb(167, 224, 136);
+      text-align: center;
+    }
+
+    h2 {
+      color: #a3f588;
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    p, label {
+      line-height: 1.8;
+      font-size: 18px;
+    }
+
+    /* إطار المعلومة الإضافية */
+    .info-frame {
+      border: 2px solid #a3f588;
+      background-color: rgba(163, 245, 136, 0.1);
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      border-right: 8px solid #a3f588;
+    }
+    .info-frame h3 {
+      margin-top: 0;
+      color: #a3f588;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 12px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* معرض الصور الموحد والمهيأ للتكبير */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 30%;
+      min-width: 200px;
+      border-radius: 12px;
+      transition: 0.3s;
+      border: 1px solid gold;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px gold;
+    }
+
+    /* تصميم نافذة تكبير الصور الموحد (Lightbox) */
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #a3f588;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(163, 245, 136, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #a3f588;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: rgb(147, 236, 149);
+      color: black;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: orange;
+    }
+
+    .back-link {
+      display: block;
+      background-color: rgb(179, 236, 119);
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      text-align: center;
+      width: fit-content;
+    }
+
+    /* تحسينات الهاتف */
+    @media (max-width: 768px) {
+      .gallery img { width: 90%; }
+      iframe { height: 200px; }
+      .container, .interactive-container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+      .story-teller img { width: 130px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- نافذة تكبير الصور الموحدة للمنصة -->
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- حماية التحكم باللمس والنطق المحمي المانع للتداخل البرمجي الخارجي -->
+    <img src="anobi3.jpg" alt="أنوبي" 
+         onclick="event.stopPropagation(); playPerfectStory()" 
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p style="color: gold; font-weight: bold; margin-bottom: 0;">أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>🏺 قرية تونس - أرض الفخار</h1>
+    
+    <div id="story">
+      <p>قرية تونس هي جوهرة مخفية في محافظة الفيوم، تقع على ضفاف بحيرة قارون. تتميز القرية ببيوتها الملونة وتراثها الفني الفريد الذي يجمع بين أصالة الريف المصري ولمسات الفن العالمي.</p>
+      <p>تشتهر القرية بصناعة الفخار اليدوي، حيث تحول الطين بين أيدي الحرفيين إلى قطع فنية مذهلة. الفضل في شهرة القرية يعود للفنانة السويسرية "إيفلين بوريت" التي أسست مدرسة لتعليم أطفال القرية هذا الفن الجميل.</p>
+    </div>
+
+    <div class="info-frame">
+      <h3>💡 معلومة إضافية</h3>
+      <p>هل تعلم أن قرية تونس لا تشتهر بالفخار فقط؟ بل هي أيضاً محطة هامة لمراقبة الطيور المهاجرة التي تأتي إلى بحيرة قارون، كما أنها تعتبر مركزاً للعمارة البيئية حيث تُبنى البيوت فيها بمواد طبيعية تحافظ على برودتها صيفاً ودفئها شتاءً.</p>
+    </div>
+  </div>
+
+  <div class="interactive-container">
+    <h2>📺 فيديوهات تعريفية</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/8_RVXe0Fdys?enablejsapi=1" title="فيديو عن قرية تونس" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/bMy6N5mjjog?enablejsapi=1" title="الحرف اليدوية" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/NleSPH1dr6E?enablejsapi=1" title="الفخار في تونس" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ معرض الصور</h2>
+    <div class="gallery">
+      <!-- ربط الصور بنظام الـ Lightbox الموحد للموقع -->
+      <img src="فخار قرية تونس.jpg" alt="فخار قرية تونس" onclick="openLightbox(this.src)">
+      <img src="إيفلين بوريه.jpg" alt="إيفلين بوريت" onclick="openLightbox(this.src)">
+      <img src="قرية تونس الفيوم ، مصر.jpg" alt="أطفال في القرية" onclick="openLightbox(this.src)">
+      <img src="Fayoum Pottery at Tunis Village in Egypt_.jfif" alt="معالم قرية تونس" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 اختبر معلوماتك!</h2>
+    <form class="quiz">
+      <label>1. في أي محافظة تقع قرية تونس؟</label>
+      <input type="text" id="q1" placeholder="اكتب اسم المحافظة">
+
+      <label>2. ما الحرفة الأساسية التي تشتهر بها القرية؟</label>
+      <input type="text" id="q2" placeholder="اكتب الحرفة">
+
+      <label>3. ما اسم الفنانة التي أسست مدرسة الفخار؟</label><br>
+      <input type="radio" name="q3" value="صحيح"> إيفلين بوريت<br>
+      <input type="radio" name="q3" value="خطأ"> نازلي مصطفى<br>
+      <input type="radio" name="q3" value="خطأ"> سميرة موسى<br>
+
+      <button type="button" onclick="checkAnswer()">تحقق من الإجابات</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 الرجوع للصفحة الرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+  <script src="image-lightbox.js"></script>
+  <script src="quiz-enhancer.js"></script>
+
+  <script>
+    // 1. إدارة النقاط المشتركة للمستكشف
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // 2. دالة فتح تكبير الصور الموحدة (Lightbox)
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    // 3. دالة الإيقاف السريع عند الضغط مرتين بالتتابع
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    // 4. نظام النطق الاحترافي والفلترة النقية من الرموز التعبيرية
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); // تصفير دائم قبل بدء نطق جديد
+
+      // صياغة النص النقي وحل الاختصارات والرموز لتفادي عيوب النطق الآلي لراحة الطلاب
+      const storyToRead = "مرحباً بك يا بطل في قرية تونس الجميلة، أرض الفن والطبيعة في الفيوم، استعد لاكتشاف تاريخها الفريد. قرية تونس هي جوهرة مخفية في محافظة الفيوم، تقع على ضفاف بحيرة قارون. تتميز القرية ببيوتها الملونة وتراثها الفني الفريد الذي يجمع بين أصالة الريف المصري ولمسات الفن العالمي. تشتهر القرية بصناعة الفخار اليدوي، حيث تحول الطين بين أيدي الحرفيين إلى قطع فنية مذهلة. الفضل في شهرة القرية يعود للفنانة السويسرية إيفلين بوريت التي أسست مدرسة لتعليم أطفال القرية هذا الفن الجميل. معلومة إضافية، هل تعلم أن قرية تونس لا تشتهر بالفخار فقط؟ بل هي أيضاً محطة هامة لمراقبة الطيور المهاجرة التي تأتي إلى بحيرة قارون، كما أنها تعتبر مركزاً للعمارة البيئية حيث تُبنى البيوت فيها بمواد طبيعية تحافظ على برودتها صيفاً ودفئها شتاءً.";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA"; // الصوت الفصيح المستقر
+      utterance.rate = 0.85;    // الوتيرة الهادئة المناسبة للأطفال
+      utterance.pitch = 0.9;    // نبرة الصوت المريحة
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 5. نظام تقييم الإجابات المطور بالدعم الصوتي النقي
+    function checkAnswer() {
+      const q1 = document.getElementById("q1").value.trim();
+      const q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const result = document.getElementById("result");
+
+      let score = 0;
+      if (q1.includes("الفيوم")) score++;
+      if (q2.includes("فخار")) score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      window.speechSynthesis.cancel();
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "رائع! إجاباتك كاملة وصحيحة ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+
+        feedbackVoice.text = "أحسنت يا بطل! كل إجاباتك صحيحة وممتازة.";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `لقد أجبت على ${score} من 3. حاول مرة أخرى! ❌`;
+        result.style.color = "tomato";
+
+        feedbackVoice.text = "حاول مرة أخرى يا بطل، يمكنك قراءة القصة بالأعلى لإيجاد الحل الإرشادي.";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+</body>
+</html>

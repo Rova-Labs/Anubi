@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مدينة هيراكليون - أسرار المدينة المفقودة</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('Lost city _Thonis-Heracleion.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: #e0f7fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgba(0, 77, 96, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #00e5ff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #00acc1;
+    }
+
+    /* صناديق المحتوى الموحدة */
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: rgba(0, 36, 52, 0.85);
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    /* كلاس الروبوت الموحد لحماية السكربتات */
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid #00bcd4;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 20px #00e5ff;
+      transform: scale(1.05);
+    }
+
+    /* تنسيق التلميح النصي للإيقاف الموحد */
+    .hint {
+      font-size: 14px;
+      color: #b0bec5;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    h1, h2 {
+      color: #4dd0e1;
+      text-align: center;
+    }
+
+    p, label {
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* إطار المعلومة الإضافية المنسق */
+    .info-frame {
+      border: 3px solid #00acc1;
+      background-color: rgba(0, 0, 0, 0.4);
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      box-shadow: 0 0 15px rgba(0, 172, 193, 0.3);
+      border-right: 8px solid #00acc1;
+    }
+    .info-frame h3 {
+      margin-top: 0;
+      color: #00e5ff;
+      text-align: right;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 10px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 1px solid #00acc1;
+    }
+
+    /* معرض الصور الموحد والمهيأ للتكبير */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 30%;
+      border-radius: 12px;
+      max-width: 300px;
+      transition: 0.3s;
+      border: 1px solid #26c6da;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px #00e5ff;
+    }
+
+    /* تصميم نافذة تكبير الصور الموحد (Lightbox) */
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #00e5ff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #00acc1;
+      margin-bottom: 15px;
+      background: rgba(0, 77, 96, 0.5);
+      color: white;
+      box-sizing: border-box;
+    }
+    .quiz label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      font-weight: bold;
+    }
+    
+    button {
+      background-color: #00acc1;
+      color: white;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 15px;
+    }
+    button:hover {
+      background-color: #00838f;
+      box-shadow: 0 0 10px #00e5ff;
+    }
+
+    .back-link {
+      display: block;
+      background-color: #004d60;
+      color: white;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      text-align: center;
+      width: fit-content;
+      border: 1px solid #00e5ff;
+    }
+
+    /* تحسينات الهاتف */
+    @media (max-width: 768px) {
+      .gallery img { width: 45%; }
+      iframe { height: 200px; }
+      .container, .interactive-container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+      .story-teller img { width: 130px; }
+    }
+    @media (max-width: 480px) {
+      .gallery img { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- نافذة تكبير الصور الموحدة للمنصة -->
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- حماية التحكم باللمس والنطق المحمي المانع للتداخل البرمجي الخارجي -->
+    <img src="anobi3.jpg" alt="أنوبي" 
+         onclick="event.stopPropagation(); playPerfectStory()" 
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p style="color: #00e5ff; font-weight: bold; margin-bottom: 0;">أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>مدينة هيراكليون - أسرار المدينة المفقودة</h1>
+
+    <div id="story">
+      <p>
+        ثونيس أو "هيراكليون" هي مدينة مصرية قديمة مذهلة كانت تقع عند مصب النيل، واختفت تماماً تحت سطح البحر منذ أكثر من ألف عام! 
+        كانت هذه المدينة الأسطورية بمثابة البوابة التجارية الرئيسية لمصر وبوابتها الحارسة على البحر المتوسط، حيث كان يجب على كل السفن الإغريقية واليونانية القادمة إلى مصر أن تمر منها أولاً لتسجيل بضائعها ودفع الضرائب قبل بناء مدينة الإسكندرية.
+      </p>
+      <p>
+        ولكن، كيف اختفت هذه المدينة العظيمة؟ في القرن الثامن الميلادي، تعرضت المنطقة لكوارث طبيعية متتالية وشديدة شملت زلازل عنيفة وفيضانات ضخمة، مما أدى إلى حدوث ظاهرة طبيعية غريبة تُسمى **"تمييع التربة"** (تحول الأرض الصلبة إلى طين سائل بسبب الضغط العالي)، مما تسبب في غرق قصورها، ومعابدها الضخمة، وموانئها بالكامل تحت مياه البحر!
+      </p>
+      <p>
+        بقيت المدينة سراً غامضاً حتى أعيد اكتشافها عام 2000 بواسطة بعثة أثرية فرنسية غاصت في أعماق البحر، حيث عثروا على تماثيل ملوك وآلهة عملاقة، وأعمدة معابد سليمة، ومئات السفن الحربية والتجارية الغارقة التي بقيت شاهدة على عظمة هذا التاريخ المفقود.
+      </p>
+    </div>
+
+    <div class="info-frame">
+      <h3>💡 معلومة إضافية</h3>
+      <p>
+        تُعد المدينة الآن واحدة من أهم الاكتشافات الأثرية المغمورة بالمياه في العالم بأسره. ومن المثير للدهشة أن العلماء وجدوا آثاراً ومقتنيات ذهبية وأواني فخارية محفوظة بشكل مذهل للغاية؛ وذلك بفضل طبقات الطمي السميكة التي غطتها وحمتها لقرون طويلة من التآكل، مما جعلها بمثابة "كبسولة زمنية" حقيقية تروي لنا تفاصيل الحياة اليومية الفرعونية.
+      </p>
+    </div>
+  </div>
+
+  <div class="interactive-container">
+    <h2>📺 فيديوهات تعريفية</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/fuqxpKsF1Co?enablejsapi=1" title="مدينة ثنويس الغارقة" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/ZvTRV-D8DlA?enablejsapi=1" title="مدينة هيراكليون" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/8FXjOZRGlho?enablejsapi=1" title="آثار غارقة من ثنويس" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ صور من المدينة</h2>
+    <div class="gallery">
+      <!-- ربط الصور بنظام الـ Lightbox الموحد للموقع -->
+      <img src="heraclion.jpg" alt="موقع مدينة هيراكليون" onclick="openLightbox(this.src)">
+      <img src="thonis.jpg" alt="اكتشاف المدينة تحت الماء" onclick="openLightbox(this.src)">
+      <img src="tho3.jpg" alt="آثار مدينة هيراكليون" onclick="openLightbox(this.src)">
+      <img src="تماثل.jpg" alt="تمثال من ثونيس" onclick="openLightbox(this.src)">
+      <img src="تماثل2.jpg" alt="تمثال من ثونيس" onclick="openLightbox(this.src)">
+      <img src="تمثال3.jpg" alt="تمثال من ثونيس" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 اختبر معلوماتك!</h2>
+    <form class="quiz">
+      <label>1. ما هو الاسم الآخر لمدينة ثونيس؟</label>
+      <input type="text" id="q1" placeholder="اكتب الاسم الآخر">
+
+      <label>2. أين تقع بقايا مدينة ثونيس وهيركليون الآن؟</label>
+      <input type="radio" name="q2" value="صحيح"> غارقة تحت مياه خليج أبي قير في الإسكندرية<br>
+      <input type="radio" name="q2" value="خطأ">غارقة في البحر الاحمر<br>
+      <input type="radio" name="q2" value="خطأ">مدفونة في كهف غارق بالبحر الابيض المتوسط<br>
+
+      <label>3. في أي عام تم اكتشاف المدينة من جديد؟</label>
+      <input type="radio" name="q3" value="خطأ"> عام 1980<br>
+      <input type="radio" name="q3" value="خطأ"> عام 1995<br>
+      <input type="radio" name="q3" value="صحيح"> عام 2000<br>
+      <input type="radio" name="q3" value="خطأ"> عام 2010<br>
+
+      <button type="button" onclick="checkAnswer()">تحقق من الإجابات</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 الرجوع للصفحة الرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="i18n.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+  <script src="image-lightbox.js"></script>
+  <script src="quiz-enhancer.js"></script>
+
+  <script>
+    // 1. إدارة النقاط المشتركة للمستكشف
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // 2. دالة فتح تكبير الصور الموحدة (Lightbox)
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    // 3. دالة الإيقاف السريع عند الضغط مرتين بالتتابع
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    // 4. نظام النطق الاحترافي والفلترة النقية من الرموز والتواريخ الرقمية
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); // تصفير دائم قبل بدء نطق جديد
+
+      // تحويل الأرقام والتواريخ برمجياً لضمان سلاسة الفهم والنطق الصوتي التفاعلي للطلاب
+      const storyToRead = "أهلاً بك في مدينة ثونيس، أطلانتس المصرية المفقودة تحت الماء، استعد لمعرفة الأسرار. ثونيس أو هيراكليون هي مدينة مصرية قديمة مذهلة كانت تقع عند مصب النيل، واختفت تماماً تحت سطح البحر منذ أكثر من ألف عام. كانت هذه المدينة الأسطورية بمثابة البوابة التجارية الرئيسية لمصر وبوابتها الحارسة على البحر المتوسط، حيث كان يجب على كل السفن الإغريقية واليونانية القادمة إلى مصر أن تمر منها أولاً لتسجيل بضائعها ودفع الضرائب قبل بناء مدينة الإسكندرية. ولكن كيف اختفت هذه المدينة العظيمة؟ في القرن الثامن الميلادي، تعرضت المنطقة لكوارث طبيعية متتالية وشديدة شملت زلازل عنيفة وفيضانات ضخمة، مما أدى إلى حدوث ظاهرة طبيعية غريبة تسمى تمييع التربة، وتحول الأرض الصلبة إلى طين سائل بسبب الضغط العالي، مما تسبب في غرق قصورها ومعابدها الضخمة وموانئها بالكامل تحت مياه البحر. بقيت المدينة سراً غامضاً حتى أعيد اكتشافها عام ألفين ميلادية بواسطة بعثة أثرية فرنسية غاصت في أعماق البحر، حيث عثروا على تماثيل ملوك وآلهة عملاقة، وأعمدة معابد سليمة، ومئات السفن الحربية والتجارية الغارقة التي بقيت شاهدة على عظمة هذا التاريخ المفقود.";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA"; // الصوت الفصيح المستقر
+      utterance.rate = 0.85;    // وتيرة مريحة وهادئة للطلاب والناشئة
+      utterance.pitch = 0.9;    // نبرة متوازنة ومحببة
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 5. نظام تقييم الإجابات المطور بالدعم الصوتي التفاعلي
+    function checkAnswer() {
+      const q1 = document.getElementById("q1").value.trim();
+      const q2 = document.querySelector('input[name="q2"]:checked');
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const result = document.getElementById("result");
+
+      let score = 0;
+      if (q1.includes("هيراكليون")) score++;
+      if (q2 && q2.value === "صحيح") score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      window.speechSynthesis.cancel(); // إلغاء أي نطق جاري فوراً لمنع التداخل الصوتي
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "أحسنت يا بطل! كل إجاباتك صحيحة وكاملة ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+
+        feedbackVoice.text = "مذهل يا بطل! إجاباتك كاملة وصحيحة، أنت مستكشف تاريخي ذكي جداً.";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `حصلت على ${score} من 3. حاول مرة أخرى ولا تستسلم! ❌`;
+        result.style.color = "tomato";
+
+        feedbackVoice.text = "لا بأس يا بطل، راجع معلومات القصة الممتعة وحاول مرة أخرى لتجمع النقاط كاملة.";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+</body>
+</html>
