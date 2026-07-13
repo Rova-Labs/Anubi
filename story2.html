@@ -1,0 +1,372 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عروس القناة - مدينة الإسماعيلية</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('ismaliai.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgba(0, 0, 50, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: gold;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #00f2ff;
+    }
+
+    /* صناديق المحتوى الموحدة */
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(0, 0, 30, 0.8);
+      border-radius: 20px;
+    }
+
+    /* كلاس الروبوت الموحد لحماية السكربتات */
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid gold;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 20px #00f2ff;
+    }
+
+    /* تنسيق التلميح النصي للإيقاف الموحد */
+    .hint {
+      font-size: 14px;
+      color: #cccccc;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    h1, h2 {
+      color: gold;
+      text-align: center;
+    }
+    
+    h2 {
+      color: #00f2ff;
+    }
+
+    p, label {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .info-frame {
+      border: 3px solid #00f2ff;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+      border-right: 8px solid #00f2ff;
+    }
+    .info-frame h3 {
+      margin-top: 0;
+      color: gold;
+      text-align: right;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 10px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 1px solid #00f2ff;
+    }
+
+    /* معرض الصور الموحد والمهيأ للتكبير */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 30%;
+      border-radius: 12px;
+      max-width: 300px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 10px #00f2ff;
+    }
+
+    /* تصميم نافذة تكبير الصور الموحد (Lightbox) */
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #00f2ff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #00f2ff;
+      margin-bottom: 15px;
+      background: rgba(0,0,0,0.4);
+      color: white;
+      box-sizing: border-box;
+    }
+    .quiz input[type="radio"] {
+      margin-left: 10px;
+    }
+    button {
+      background-color: rgb(0, 145, 255);
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: rgb(0, 100, 200);
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: lightgreen;
+    }
+
+    .back-link {
+      display: inline-block;
+      background-color: rgb(40, 89, 214);
+      color: white;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      display: block;
+      text-align: center;
+      width: fit-content;
+      transition: 0.3s;
+    }
+    .back-link:hover {
+      background-color: darkred;
+    }
+
+    @media (max-width: 768px) {
+      .gallery img, iframe { width: 100%; }
+      .video-container { flex-direction: column; align-items: center; }
+      .container, .interactive-container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- نافذة تكبير الصور الموحدة للمنصة -->
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- حماية التحكم باللمس والنطق المحمي المانع للتداخل البرمجي الخارجي -->
+    <img src="anobi.jpg" alt="أنوبي" 
+         onclick="event.stopPropagation(); playPerfectStory()" 
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p style="color: gold; font-weight: bold; margin-bottom: 0;">أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>عروس القناة - مدينة الإسماعيلية</h1>
+
+    <p id="story">
+      مدينة الإسماعيلية واحدة من أجمل مدن القناة في مصر، تقع على الضفة الغربية لقناة السويس، وسُمّيت نسبة إلى الخديوي إسماعيل الذي ارتبط اسمه بمشروع القناة وتطوير المنطقة.
+      <br><br>
+      تأسست المدينة عام 1863 لتكون مقرًا إداريًا مهمًا خلال حفر قناة السويس. ومع مرور الوقت أصبحت مركزًا اقتصاديًا وعسكريًا وثقافيًا مهمًا.
+      <br><br>
+      خلال حرب أكتوبر 1973، لعبت الإسماعيلية دورًا وطنيًا مهمًا، فقد كانت محورًا دفاعيًا حساسًا، وارتبط اسمها بمعارك بطولية أظهرت تماسك الشعب المصري وشجاعة القوات المسلحة.
+    </p>
+
+    <div class="info-frame">
+      <h3>💡 معلومة إضافية</h3>
+      <p>
+        تتميز الإسماعيلية بطابع عمراني فريد يجمع بين التخطيط الأوروبي القديم والروح المصرية، وتُعرف بـ "باريس الشرق". من معالمها الشهيرة: مبنى الإرشاد التاريخي، ومنطقة الملاحة، وبحيرة التمساح. كما تُعد آلة "السمسمية" جزءًا أصيلاً من هوية المدينة الموسيقية وتاريخ المقاومة.
+      </p>
+    </div>
+  </div> 
+
+  <div class="interactive-container">
+    <h2>📺 فيديوهات تعريفية</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/AtKxj6sHrQU?enablejsapi=1" title="الإسماعيلية - قناة السويس" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/X3Ur1kM_Ab0?enablejsapi=1" title="الإسماعيلية - قناة السويس" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/oTtyNnXcukM?enablejsapi=1" title="فيلا ديليسبس" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/53QjrJAMogM?enablejsapi=1" title="السمسمية موسيقى المقاومة" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ صور من المدينة</h2>
+    <div class="gallery">
+      <!-- ربط الصور بنظام الـ Lightbox الموحد للموقع -->
+      <img src="kornish.jpg" alt="كورنيش الإسماعيلية" onclick="openLightbox(this.src)">
+      <img src="Fernidan de Lesseps.jpg" alt="منزل فيردينان ديليسيبس" onclick="openLightbox(this.src)">
+      <img src="Temsah_Lake.jpg" alt="بحيرة التمساح" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 اختبر معلوماتك!</h2>
+    <form class="quiz">
+      <label>1. في أي عام تأسست مدينة الإسماعيلية؟</label>
+      <input type="text" id="q1" placeholder="اكتب السنة">
+
+      <label>2. لماذا سُميت بهذا الاسم؟</label>
+      <input type="text" id="q2" placeholder="اكتب السبب">
+
+      <label>3. ما الغرض من تأسيس مدينة الإسماعيلية؟</label><br>
+      <input type="radio" name="q3" value="خطأ"> لتكون عاصمة لمصر <br>
+      <input type="radio" name="q3" value="خطأ"> لتكون مدينة سياحية <br>
+      <input type="radio" name="q3" value="صحيح"> لتكون مقرًا لشركة قناة السويس أثناء الحفر<br>
+      <input type="radio" name="q3" value="خطأ"> لأنها قريبة من البحر<br>
+
+      <button type="button" onclick="checkAnswers()">تحقق من إجاباتك</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 الرجوع للصفحة الرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="i18n.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+  <script src="image-lightbox.js"></script>
+  <script src="quiz-enhancer.js"></script>
+  
+  <script>
+    // 1. إدارة النقاط المشتركة للمستكشف
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // 2. دالة فتح تكبير الصور الموحدة (Lightbox)
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    // 3. دالة الإيقاف السريع عند الضغط مرتين بالتتابع
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    // 4. نظام النطق الاحترافي والفلترة النقية من الرموز التعبيرية
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); // تصفير دائم قبل بدء نطق جديد
+
+      // صياغة النص النقي وحل مشكلة الأرقام برمجياً لراحة المستمع الصغير
+      const storyToRead = "مرحباً بك يا بطل في عروس القناة، مدينة الإسماعيلية، استعد لاكتشاف تاريخها العظيم. مدينة الإسماعيلية واحدة من أجمل مدن القناة في مصر، تقع على الضفة الغربية لقناة السويس، وسُمّيت نسبة إلى الخديوي إسماعيل الذي ارتبط اسمه بمشروع القناة وتطوير المنطقة. تأسست المدينة عام ألف وثمانمائة وثلاثة وستين لتكون مقرًا إداريًا مهمًا خلال حفر قناة السويس. ومع مرور الوقت أصبحت مركزًا اقتصاديًا وعسكريًا وثقافيًا مهمًا. خلال حرب أكتوبر عام ألف وتسعمائة وثلاثة وسبعين، لعبت الإسماعيلية دورًا وطنيًا مهمًا، فقد كانت محورًا دفاعيًا حساسًا، وارتبط اسمها بمعارك بطولية أظهرت تماسك الشعب المصري وشجاعة القوات المسلحة. معلومة إضافية، تتميز الإسماعيلية بطابع عمراني فريد يجمع بين التخطيط الأوروبي القديم والروح المصرية، وتُعرف بباريس الشرق. من معالمها الشهيرة: مبنى الإرشاد التاريخي، ومنطقة الملاحة، وبحيرة التمساح. كما تُعد آلة السمسمية جزءًا أصيلاً من هوية المدينة الموسيقية وتاريخ المقاومة.";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA"; // الصوت الفصيح المستقر
+      utterance.rate = 0.85;    // الوتيرة الهادئة المناسبة للأطفال
+      utterance.pitch = 0.9;    // نبرة الصوت المريحة
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 5. نظام تقييم الإجابات المطور بالدعم الصوتي النقي
+    function checkAnswers() {
+      let q1 = document.getElementById("q1").value.trim();
+      let q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+
+      // توحيد الأرقام المدخلة من الطلاب لضمان دقة الفحص
+      const map = { '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9' };
+      q1 = q1.replace(/[٠-٩]/g, d => map[d]);
+
+      let score = 0;
+      if (q1 === "1863") score++;
+      if (q2.includes("اسماعيل") || q2.includes("الخديوي")) score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      const result = document.getElementById("result");
+      
+      window.speechSynthesis.cancel();
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "أحسنت! كل إجاباتك صحيحة ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+        
+        feedbackVoice.text = "أحسنت يا بطل! إجاباتك صحيحة تماماً.";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `حصلت على ${score} من 3. حاول مرة أخرى ❌`;
+        result.style.color = "tomato";
+        
+        feedbackVoice.text = "حاول مرة أخرى، المعلومات موجودة في النص بالأعلى.";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+</body>
+</html>

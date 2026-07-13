@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شفرة النصر - اللغة النوبية</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <link rel="stylesheet" href="enhancements.css" />
+  
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background-image: url('NOBA.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: rgba(45, 20, 5, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffd700;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 2px solid #ff9800;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: rgba(45, 20, 5, 0.85);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    }
+
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid #ff9800;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 20px #ff9800;
+      transform: scale(1.05);
+    }
+    .story-teller .hint {
+      font-size: 14px;
+      color: #ccc;
+      margin-top: -10px;
+    }
+
+    h1, h2 {
+      color: #ff9800;
+      text-align: center;
+    }
+    p, label {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .info-frame {
+      border: 3px solid #ff9800;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      box-shadow: 0 0 15px rgba(255, 152, 0, 0.3);
+      border-right: 8px solid #ff9800;
+    }
+    .info-frame h3 {
+      margin-top: 0;
+      color: #ffd700;
+      text-align: right;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 10px;
+      width: 100%;
+      max-width: 480px;
+      height: 270px;
+      border: 1px solid #ff9800;
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 30%;
+      border-radius: 12px;
+      max-width: 300px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px #ff9800;
+      transform: scale(1.03);
+    }
+
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid #ff9800;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 152, 0, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ff9800;
+      margin-bottom: 15px;
+      background: rgba(0,0,0,0.5);
+      color: white;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    .quiz input[type="radio"] {
+      margin-left: 10px;
+    }
+    button {
+      background-color: #ff9800;
+      color: white;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #e65100;
+    }
+    #result {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ffd700;
+    }
+
+    .back-link {
+      display: inline-block;
+      background-color: rgb(179, 236, 119);
+      color: black;
+      font-weight: bold;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      display: block;
+      text-align: center;
+      width: fit-content;
+      transition: 0.3s;
+    }
+    .back-link:hover {
+      background-color: darkred;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .gallery img, iframe { width: 100%; }
+      .video-container { flex-direction: column; align-items: center; }
+      .container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- تمت إضافة ondblclick هنا لإيقاف الصوت عند الضغط المزدوج -->
+    <img src="anobi.jpg" alt="أنوبي" title="اضغط مرة للاستماع، ومرتين للإيقاف" 
+         onclick="event.stopPropagation(); playPerfectStory()" 
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p>أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>شفرة النصر - اللغة النوبية</h1>
+
+    <p id="story">
+      اللغة النوبية ليست مجرد وسيلة للتواصل، بل كانت "السلاح السري" الذي حسم أعظم معارك مصر الحديثة. 
+      بدأت القصة مع البطل الصول "أحمد إدريس"، الذي لاحظ أثناء خدمته العسكرية أن العدو ينجح دائماً في التقاط الشفرات اللاسلكية وفك رموزها. 
+      بذكاء فطري، اقترح إدريس استخدام اللغة النوبية كشفرة للتواصل.
+      <br><br>
+      لماذا كانت مستحيلة الكسر؟ لأن اللغة النوبية في ذلك الوقت كانت لغة "منطوقة" فقط، ولم تكن لها قواعد مكتوبة، مما جعل أجهزة التنصت لدى العدو تقف عاجزة أمام أصوات لم يسمعوها من قبل. 
+    </p>
+
+    <div class="info-frame">
+      <h3>💡 معلومة إضافية</h3>
+      <p>
+        تم اختيار مجندين من أبناء النوبة لنقل الأوامر، حيث كانت كلمة "أولوم" تعني تمساحاً (للإشارة للدبابة)، و"إيريد" تعني غراباً (للإشارة لطائرات الاستطلاع). بفضل هذه الشفرة، تحرك الجيش المصري في صمت تام وحقق نصر أكتوبر العظيم، وقد تم تكريم الصول أحمد إدريس من قِبل الرئيس الراحل أنور السادات تقديراً لعبقريته.
+      </p>
+    </div>
+
+    <h2>📺 فيديوهات عن قصة الشفرة</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/eDwdW7Mjyp8?si=2UMIN_wDXYe0aovy&amp;controls=0" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/IppLOSXU8TA?si=ClCAqqi6Tyr0VMGK" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ صور من التراث النوبي</h2>
+    <div class="gallery">
+      <img src="بيوت النوبة.jpg" alt="بيوت النوبة" onclick="openLightbox(this.src)">
+      <img src="الفن النوبي.jpg" alt="فن النوبة" onclick="openLightbox(this.src)">
+      <img src="نصر أكتوبر العظيم.jpg" alt="نصر أكتوبر" onclick="openLightbox(this.src)">
+      <img src="أحمد إدريس.jpg" alt="احمد إدريس" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 اختبر معلوماتك!</h2>
+    <form class="quiz">
+      <label>1. ما اسم الصول صاحب فكرة الشفرة؟</label>
+      <input type="text" id="q1" placeholder="اكتب الاسم هنا">
+
+      <label>2. ماذا يراد بكلمة "أولوم" في الشفرة النوبية؟</label>
+      <input type="text" id="q2" placeholder="اكتب المعنى">
+
+      <label>3. لماذا كانت اللغة النوبية صعبة على العدو؟</label><br>
+      <input type="radio" name="q3" value="صحيح"> لأنها لغة منطوقة وليست مكتوبة<br>
+      <input type="radio" name="q3" value="خطأ"> لأنها لغة قديمة<br>
+      <input type="radio" name="q3" value="خطأ">لأنها لغة سهلة مشهورة<br>
+
+      <button type="button" onclick="checkAnswers()">تحقق من إجاباتك</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 الرجوع للصفحة الرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="i18n.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+  <script src="image-lightbox.js"></script>
+  <script src="quiz-enhancer.js"></script>
+  
+  <script>
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); 
+
+      const storyToRead = "اللغة النوبية ليست مجرد وسيلة للتواصل، بل كانت السلاح السري الذي حسم أعظم معارك مصر الحديثة. بدأت القصة مع البطل الصول أحمد إدريس، الذي لاحظ أن العدو ينجح دائماً في التقاط الشفرات اللاسلكية وفك رموزها. بذكاء فطري، اقترح إدريس استخدام اللغة النوبية كشفرة. ولأنها لغة منطوقة فقط بلا قواعد مكتوبة، وقفت أجهزة التنصت عاجزة. ... معلومة إضافية. تم اختيار مجندين من أبناء النوبة لنقل الأوامر. كلمة أولوم تعني تمساحاً للإشارة للدبابة. وكلمة إيريد تعني غراباً للإشارة لطائرات الاستطلاع. وبهذا تحقق نصر أكتوبر العظيم.";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA";
+      utterance.rate = 0.85; 
+      utterance.pitch = 0.9;
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // الدالة الجديدة الخاصة بإيقاف الصوت
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    function checkAnswers() {
+      const q1 = document.getElementById("q1").value.trim();
+      let q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+
+      const map = { '٠':'0','١':'1','٢':'2','٣':'3','٤':'4','٥':'5','٦':'6','٧':'7','٨':'8','٩':'9' };
+      q2 = q2.replace(/[٠-٩]/g, d => map[d]);
+
+      let score = 0;
+      if (q1.includes("إدريس")) score++;
+      if (q2.includes("دبابة") || q2.includes("تمساح")) score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      const result = document.getElementById("result");
+      
+      window.speechSynthesis.cancel();
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "أحسنت! كل إجاباتك صحيحة ✅";
+        result.style.color = "lightgreen";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+        
+        feedbackVoice.text = "أحسنت إجاباتك صحيحة";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `حصلت على ${score} من 3. حاول مرة أخرى ❌`;
+        result.style.color = "tomato";
+        
+        feedbackVoice.text = "حاول مرة أخرى لا تيأس";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+
+</body>
+</html>

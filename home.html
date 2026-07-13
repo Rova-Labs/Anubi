@@ -1,0 +1,698 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>الرئيسية - أنوبي</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    /* الهوية البصرية الملكية المطورة */
+    :root {
+      --primary-gold: #d4af37;
+      --light-gold: #ffd700;
+      --dark-gold: #aa7c11;
+      --dark-blue: #020b24;
+      --royal-blue: #0a1931;
+      --glass-white: rgba(255, 255, 255, 0.96);
+      --glass-dark: rgba(2, 11, 36, 0.94);
+      --neon-gold: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background: url('back2.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      overflow-x: hidden;
+      background-color: var(--dark-blue);
+    }
+
+    /* الطبقة الزجاجية الخلفية المعززة بالتدرج الملكي */
+    .overlay {
+      background: linear-gradient(135deg, rgba(2, 11, 36, 0.93), rgba(10, 25, 49, 0.85));
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* مصفوفة الرموز الفرعونية الطافية والمتحركة في الخلفية */
+    .hieroglyph-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .glyph {
+      position: absolute;
+      color: rgba(255, 215, 0, 0.07); /* شفافية مثالية لعدم تشتيت القارئ */
+      font-size: clamp(40px, 6vw, 80px);
+      font-family: Arial, sans-serif;
+      user-select: none;
+      animation: floatGlyph 20s infinite ease-in-out alternate;
+    }
+
+    /* ضبط مسارات ومواقيت حركة الرموز بطريقة عشوائية احترافية */
+    .glyph:nth-child(1) { left: 8%; top: 15%; animation-delay: 0s; animation-duration: 18s; }
+    .glyph:nth-child(2) { left: 88%; top: 25%; animation-delay: 3s; animation-duration: 22s; }
+    .glyph:nth-child(3) { left: 12%; top: 65%; animation-delay: 1.5s; animation-duration: 25s; }
+    .glyph:nth-child(4) { left: 82%; top: 70%; animation-delay: 5s; animation-duration: 19s; }
+    .glyph:nth-child(5) { left: 45%; top: 12%; animation-delay: 7s; animation-duration: 24s; }
+    .glyph:nth-child(6) { left: 25%; top: 40%; animation-delay: 4s; animation-duration: 21s; }
+    .glyph:nth-child(7) { left: 70%; top: 45%; animation-delay: 2s; animation-duration: 23s; }
+
+    @keyframes floatGlyph {
+      0% { transform: translateY(0) translateX(0) rotate(0deg) scale(1); }
+      50% { transform: translateY(-40px) translateX(20px) rotate(180deg) scale(1.15); color: rgba(255, 215, 0, 0.12); }
+      100% { transform: translateY(-80px) translateX(-10px) rotate(360deg) scale(1); }
+    }
+
+    /* جعل المحتوى الرئيسي فوق الخلفية المتحركة لقابلية النقر الكاملة */
+    .main-content-wrapper {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* زر القائمة العائم المطور بمؤثرات ثلاثية الأبعاد */
+    .profile-btn {
+      position: absolute;
+      top: 25px;
+      right: 25px;
+      background: linear-gradient(135deg, var(--light-gold), var(--primary-gold));
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      width: 65px; 
+      height: 65px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), var(--neon-gold);
+      transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 1000;
+    }
+    .profile-btn:hover { 
+      transform: scale(1.15) rotate(360deg); 
+      box-shadow: 0 0 35px var(--light-gold); 
+    }
+
+    /* القسم الرئيسي البديع */
+    .hero-section { 
+      text-align: center; 
+      padding: 90px 20px 40px 20px; 
+    }
+    
+    /* تأثير الوميض الذهبي المتحرك على العنوان الملكي */
+    h1 { 
+      font-size: clamp(28px, 6vw, 48px); 
+      background: linear-gradient(to right, #d4af37 20%, #ffd700 40%, #ffd700 60%, #d4af37 80%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shineGold 4s linear infinite;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6); 
+      margin-bottom: 30px; 
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes shineGold {
+      to { background-position: 200% center; }
+    }
+    
+    h2 { 
+      color: var(--light-gold); 
+      text-align: center; 
+      margin-bottom: 35px; 
+      font-weight: 800; 
+      font-size: 26px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    .anobi-container { 
+      position: relative; 
+      display: inline-block; 
+      margin-bottom: 25px; 
+    }
+    
+    /* هالة مقدسة متحركة حول صورة أنوبي */
+    .anobi-img {
+      width: 170px; 
+      height: 170px;
+      border-radius: 50%;
+      border: 5px solid var(--primary-gold);
+      padding: 8px;
+      background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, rgba(0,0,0,0.4) 70%);
+      cursor: pointer;
+      transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), var(--neon-gold);
+      animation: auraPulse 3s infinite alternate;
+    }
+
+    @keyframes auraPulse {
+      0% { box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+      100% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 15px rgba(255, 255, 255, 0.3); }
+    }
+
+    .anobi-img:hover { 
+      transform: scale(1.1) translateY(-5px); 
+      border-color: var(--light-gold);
+    }
+
+    .speech-box {
+      margin-top: 25px;
+      background: var(--glass-white);
+      color: #001a33;
+      padding: 18px 40px;
+      border-radius: 50px;
+      font-weight: 900;
+      font-size: 19px;
+      display: inline-block;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      border: 3px solid var(--primary-gold);
+      position: relative;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* شبكة قائمة القصص الاحترافية بتأثير الزجاج البلوري الفاخر */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 30px;
+      padding: 20px 10%;
+      width: 100%;
+      box-sizing: border-box;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .story-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.98));
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 25px;
+      border-radius: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border-right: 10px solid var(--primary-gold);
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .story-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.25));
+      transform: translateX(100%);
+      transition: 0.6s ease;
+    }
+    .story-card:hover::before {
+      transform: translateX(-100%);
+    }
+    .story-card:hover { 
+      transform: translateY(-10px) scale(1.03); 
+      box-shadow: 0 20px 35px rgba(212, 175, 55, 0.4); 
+      border-right-color: var(--light-gold);
+    }
+    .story-card span { 
+      color: #002347; 
+      font-weight: 900; 
+      font-size: 19px; 
+      transition: 0.3s;
+      z-index: 2;
+    }
+    .story-card:hover span {
+      color: #000;
+    }
+
+    /* القائمة الجانبية الأنيقة والمطورة */
+    .sidebar {
+      position: fixed;
+      right: -400px; 
+      top: 0;
+      width: 380px; 
+      height: 100%;
+      background: var(--glass-dark);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      z-index: 2000;
+      padding: 35px 25px;
+      transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 4px solid var(--primary-gold);
+      box-shadow: -20px 0 50px rgba(0, 0, 0, 0.8);
+      overflow-y: auto;
+      box-sizing: border-box;
+    }
+    .sidebar.active { right: 0; }
+    .sidebar::-webkit-scrollbar { width: 6px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--primary-gold); border-radius: 10px; }
+
+    .close-drawer { 
+      background: none; 
+      border: none; 
+      color: #ff5252; 
+      font-size: 38px; 
+      cursor: pointer; 
+      float: left; 
+      transition: 0.3s; 
+    }
+    .close-drawer:hover { transform: scale(1.2) rotate(90deg); color: #ff1717; }
+
+    .profile-info { text-align: center; clear: both; }
+    #avatar-img { 
+      width: 130px; 
+      height: 130px; 
+      border-radius: 50%; 
+      border: 4px solid var(--primary-gold); 
+      margin-bottom: 10px; 
+      object-fit: cover; 
+      box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); 
+    }
+    
+    /* شارة اللقب الحركية الجديدة */
+    .title-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #8a6f27, var(--dark-gold));
+      color: var(--light-gold);
+      padding: 6px 20px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      border: 1px solid var(--light-gold);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+    
+    .info-row {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: 14px;
+      margin: 14px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      transition: 0.3s;
+    }
+    .info-row:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--light-gold);
+    }
+    
+    .pass-toggle { 
+      cursor: pointer; 
+      color: var(--light-gold); 
+      font-size: 13px; 
+      border: 1px solid var(--light-gold); 
+      padding: 5px 12px; 
+      border-radius: 8px; 
+      transition: 0.3s; 
+    }
+    .pass-toggle:hover { background: var(--light-gold); color: black; font-weight: bold; }
+
+    .logout-btn {
+      width: 100%; 
+      padding: 15px; 
+      background: linear-gradient(135deg, #d32f2f, #b71c1c); 
+      color: white;
+      border: none; 
+      border-radius: 12px; 
+      font-weight: bold; 
+      cursor: pointer; 
+      margin-top: 20px; 
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
+    }
+    .logout-btn:hover { background: #b71c1c; box-shadow: 0 0 25px rgba(211, 47, 47, 0.6); transform: translateY(-2px); }
+
+    /* نموذج المراسلة المطور الملكي */
+    .contact-box { 
+      background: rgba(3, 16, 46, 0.85); 
+      padding: 25px; 
+      border-radius: 22px; 
+      margin-top: 35px; 
+      border: 1px solid rgba(255, 215, 0, 0.35); 
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    }
+
+    .contact-box h3 { 
+      color: var(--light-gold); 
+      font-size: 19px; 
+      margin-top: 0;
+      margin-bottom: 20px; 
+      text-align: center;
+      border-bottom: 2px dashed rgba(212, 175, 55, 0.3);
+      padding-bottom: 12px;
+    }
+
+    .contact-box input, 
+    .contact-box textarea {
+      width: 100%; 
+      padding: 14px 18px; 
+      border: 1px solid rgba(255, 215, 0, 0.2); 
+      border-radius: 12px; 
+      margin-bottom: 15px; 
+      box-sizing: border-box; 
+      background: rgba(255, 255, 255, 0.06); 
+      color: white;
+      font-family: 'Cairo', sans-serif; 
+      transition: 0.3s;
+      resize: vertical;
+    }
+
+    .contact-box input:focus, 
+    .contact-box textarea:focus {
+      outline: none;
+      border-color: var(--light-gold);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .contact-box button {
+      width: 100%; 
+      padding: 16px; 
+      background: linear-gradient(45deg, var(--dark-gold), var(--light-gold)); 
+      color: #000b29; 
+      border: none; 
+      border-radius: 14px; 
+      cursor: pointer; 
+      font-weight: 900; 
+      font-size: 17px;
+      transition: 0.4s;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .contact-box button:hover { 
+      background: linear-gradient(45deg, #fff, var(--light-gold)); 
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
+    }
+
+    /* الـ QR Code */
+    .qr-box { 
+      text-align: center; 
+      margin-top: 35px; 
+      margin-bottom: 20px; 
+      padding: 20px; 
+      background: rgba(255,255,255,0.04); 
+      border-radius: 18px; 
+      border: 1px solid rgba(212, 175, 55, 0.25); 
+    }
+    .qr-box img { 
+      width: 145px; 
+      border-radius: 12px; 
+      border: 3px solid var(--primary-gold); 
+      padding: 6px; 
+      background: white; 
+      margin-top: 12px; 
+      transition: 0.3s;
+    }
+    .qr-box img:hover { transform: scale(1.05); }
+
+    footer {
+      background: rgba(1, 6, 20, 0.95);
+      padding: 30px;
+      text-align: center;
+      border-top: 3px solid var(--primary-gold);
+      margin-top: auto;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+
+    @media (max-width: 768px) {
+      .stories-grid { padding: 20px 5%; gap: 20px; }
+      .sidebar { width: 100%; right: -100%; }
+      .profile-btn { top: 15px; right: 15px; width: 55px; height: 55px; font-size: 24px; }
+      .hero-section { padding-top: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+  
+  <!-- طبقة الرموز الفرعونية العائمة -->
+  <div class="hieroglyph-bg">
+    <div class="glyph">𓂀</div>
+    <div class="glyph">☥</div>
+    <div class="glyph">𓆣</div>
+    <div class="glyph">𓂀</div>
+    <div class="glyph">☥</div>
+    <div class="glyph">𓋹</div>
+    <div class="glyph">𓆣</div>
+  </div>
+
+  <!-- مغلف المحتوى الأساسي لضمان بقائه فوق الخلفية دائماً -->
+  <div class="main-content-wrapper">
+    <button class="profile-btn" onclick="toggleSidebar()">👤</button>
+
+    <aside class="sidebar" id="sidebar">
+      <button class="close-drawer" onclick="toggleSidebar()">✕</button>
+      
+      <div class="profile-info">
+        <h2 style="color: var(--light-gold); margin-top: 0; font-size: 26px;">سجل المستكشف</h2>
+        <img id="avatar-img" src="boy.jpg" alt="Profile">
+        
+        <!-- اللقب الفرعوني المتطور والمبني على النقاط -->
+        <div>
+          <span class="title-badge" id="disp-title">👑 جارٍ التحميل...</span>
+        </div>
+        
+        <div class="info-row">
+          <span>👤 الاسم:</span>
+          <strong id="disp-user">غير معروف</strong>
+        </div>
+
+        <div class="info-row">
+          <span>🔑 كلمة المرور:</span>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span id="disp-pass" style="letter-spacing: 2px;">******</span>
+            <span class="pass-toggle" onclick="togglePass()">إظهار</span>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <span>⭐ النقاط:</span>
+          <strong id="disp-points" style="color: var(--light-gold); font-size: 22px;">0</strong>
+        </div>
+
+        <button class="logout-btn" onclick="handleLogout()">الخروج من بوابة الزمن</button>
+      </div>
+
+      <div class="contact-box">
+        <h3>📧 أرسل رسالة لأنوبي</h3>
+        <form id="contactForm" action="https://formspree.io/f/mqablzqy" method="POST">
+          <input type="text" name="name" id="explorerName" placeholder="اسم المستكشف" required>
+          <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
+          <textarea name="message" rows="4" placeholder="كيف يمكننا مساعدتك في رحلتك ؟" required></textarea>
+          <button type="submit">إرسال الرسالة الآن</button>
+        </form>
+      </div>
+
+      <div class="qr-box">
+        <p style="font-size:17px; font-weight:900; color:var(--light-gold); margin-bottom:8px;">🏛️ الصرح المعرفي</p>
+        <p style="font-size:14px; margin-bottom:12px; color: #ddd;">امسح الكود لزيارة افتراضية للمتحف المصري</p>
+        <img src="المتحف المصري _qr_code.png" alt="QR Code">
+      </div>
+    </aside>
+
+    <main class="hero-section">
+      <h1 id="welcome-title">أهلاً بك في مهد الحضارة 🤖</h1>
+      
+      <div class="anobi-container">
+        <img src="anobi.jpg" class="anobi-img" alt="Anubi" onclick="speakWelcome()">
+        <br>
+        <div class="speech-box">أنا أنوبي، رفيقك في رحلة عبر الزمن! ✨</div>
+      </div>
+    </main>
+
+    <h2>📜 اختر قصة:</h2>
+
+    <nav class="stories-grid">
+      <a href="sirdab.html" class="story-card"><span>🏛️ سراديب الخلود - وادي الملوك</span></a>
+      <a href="story2.html" class="story-card"><span>🧜🏻‍♀ عروس القناة - الإسماعيلية</span></a>
+      <a href="story3.html" class="story-card"><span>🏺 عاصمة الفخار - قرية تونس</span></a>
+      <a href="story4.html" class="story-card"><span>🏰 حارس البحر - قلعة قايتباي</span></a>
+      <a href="story5.html" class="story-card"><span>🏙 المدينة المفقودة - هيراكليون</span></a>
+      <a href="story6.html" class="story-card"><span>🌾 قرية دنشواي - الصحوة المصرية</span></a>
+      <a href="story7.html" class="story-card"><span>🔐 اللهجة النوبية سر الانتصار</span></a>
+      <a href="intro.html" class="story-card"><span>❓ من نحن ؟</span></a>
+    </nav>
+
+    <p style="text-align:center; font-weight:bold; color:var(--light-gold); margin: 40px 0; font-size: 19px; text-shadow: 0 2px 5px rgba(0,0,0,0.5);">👆 اضغط على أنوبي لتبدأ مغامرتك!</p>
+    <p style="text-align:center; font-weight:bold; color:var(--light-gold); margin: 50px 0; letter-spacing: 1px; font-size: 18px;">🏺 "من لا ماضي له.. لا حاضر له" - استمر في الاستكشاف! 🏺</p>
+
+    <footer>
+      <p>© صمم الموقع بواسطة رويدا محمد EG</p>
+      <p>رحلة عبر حضارة مصر تبدأ من هنا 💫</p>
+    </footer>
+  </div>
+</div>
+
+<script src="core.js"></script>
+<script>
+  // فتح وإغلاق القائمة الجانبية
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("active");
+  }
+
+  // إظهار وإخفاء كلمة المرور الأصلية من الجلسة النشطة
+  let passHidden = true;
+  function togglePass() {
+    const passField = document.getElementById("disp-pass");
+    const toggleBtn = document.querySelector(".pass-toggle");
+    const sessionData = localStorage.getItem("active_session");
+    
+    let realPass = "لا يوجد";
+    if(sessionData) {
+      realPass = JSON.parse(sessionData).password || "لا يوجد";
+    }
+
+    if (passHidden) {
+      passField.textContent = realPass;
+      passField.style.letterSpacing = "normal";
+      toggleBtn.textContent = "إخفاء";
+      passHidden = false;
+    } else {
+      passField.textContent = "******";
+      passField.style.letterSpacing = "2px";
+      toggleBtn.textContent = "إظهار";
+      passHidden = true;
+    }
+  }
+
+  // محرك احتساب الألقاب الديناميكي متوافق مع نظام (فرعون/ملكة)
+  function calculateTitle(points, gender) {
+    const isFemale = gender === 'female';
+    
+    if (points >= 1000) return isFemale ? "👑 ملكة أسطورية خارقة" : "👑 فرعون أسطوري خارق";
+    if (points >= 900)  return isFemale ? "📝 كاتبة المعابد الملكية" : "📝 كاتب المعابد الملكي";
+    if (points >= 800)  return isFemale ? "☀️ حاملة مفتاح الحياة" : "☀️ حامل مفتاح الحياة";
+    if (points >= 700)  return isFemale ? "🦅 عالمة المصريات البارعة" : "🦅 عالم المصريات البارع";
+    if (points >= 600)  return isFemale ? "⚔️ أميرة الفراعنة الشجاعة" : "⚔️ أمير الفراعنة الشجاع";
+    if (points >= 500)  return isFemale ? "📜 الحكيمة الفرعونية الكبيرة" : "📜 الحكيم الفرعوني الكبير";
+    if (points >= 400)  return isFemale ? "🔺 محققة أسرار الأهرامات" : "🔺 محقق أسرار الأهرامات";
+    if (points >= 300)  return isFemale ? "🔐 صائدة الأسرار الخفية" : "🔐 صائد الأسرار الخفية";
+    if (points >= 200)  return isFemale ? "🏰 حارسة التاريخ المصري" : "🏰 حارس التاريخ المصري";
+    if (points >= 150)  return isFemale ? "🏺 خبيرة الآثار المتميزة" : "🏺 خبير الآثار المتميز";
+    if (points >= 100)  return isFemale ? "⭐ المستكشفة المتميزة" : "⭐ المستكشف المتميز";
+    if (points >= 50)   return isFemale ? "🔍 المستكشفة" : "🔍 المستكشف";
+    
+    return isFemale ? "👸🏽 ملكة مبتدئة" : "🤴🏽 فرعون مبتدئ";
+  }
+
+  // تحميل بيانات المستخدم وحساب الألقاب من الجلسة النشطة (active_session)
+  function loadProfile() {
+    const sessionData = localStorage.getItem("active_session");
+    
+    // إذا لم تكن هناك جلسة نشطة، أعده إلى بوابة الدخول
+    if (!sessionData) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const user = JSON.parse(sessionData);
+    const fullName = user.originalName || "مستكشف";
+    const firstName = fullName.split(' ')[0];
+    const gender = user.gender || "male";
+    const points = user.points || 0;
+    
+    document.getElementById("disp-user").textContent = fullName;
+    document.getElementById("welcome-title").textContent = `أهلاً بك يا ${firstName} في مهد الحضارة 🤖`;
+
+    const nameInput = document.getElementById("explorerName");
+    if (nameInput) {
+      nameInput.value = firstName;
+    }
+    
+    document.getElementById("disp-points").textContent = points;
+    
+    const userTitle = calculateTitle(points, gender);
+    document.getElementById("disp-title").textContent = userTitle;
+    
+    document.getElementById("avatar-img").src = (gender === "female") ? "girl2.jpg" : "boy.jpg";
+  }
+
+  // نطق الترحيب بصوت عربي مع استخدام الاسم الأول ولقب المغامرة الحالي
+  function speakWelcome() {
+    const sessionData = localStorage.getItem("active_session");
+    if (!sessionData) return;
+    
+    const user = JSON.parse(sessionData);
+    const fullName = user.originalName || "صديقي";
+    const firstName = fullName.split(' ')[0];
+    const currentPoints = user.points || 0;
+    const gender = user.gender || "male";
+    
+    const userTitle = calculateTitle(currentPoints, gender).replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDC00-\uDFFF]/g, ''); 
+    
+    const msg = new SpeechSynthesisUtterance(`أهلاً بكْ يا ${firstName}.. رُتْبَتَكْ الحالية هي ${userTitle}، أنا أنوبي رفيقك، مستعدون لمتابعة المغامرة؟`);
+    msg.lang = "ar-EG";
+    speechSynthesis.cancel(); 
+    speechSynthesis.speak(msg);
+  }
+
+  // إرسال النموذج بطريقة احترافية مع التفاعل الصوتي (AJAX)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); 
+    const form = e.target;
+    
+    fetch(form.action, {
+      method: form.method,
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        if (typeof SpeechSynthesisUtterance !== "undefined") {
+          const thanksMsg = new SpeechSynthesisUtterance("استلمت رسالتك بكل فخر، وسأرد عليك قريباً.");
+          thanksMsg.lang = "ar-EG";
+          window.speechSynthesis.speak(thanksMsg);
+        }
+        alert("تم إرسال رسالتك بنجاح! شكراً لتواصلك.");
+        
+        form.querySelector('textarea[name="message"]').value = '';
+        form.querySelector('input[name="email"]').value = '';
+      } else {
+        alert("حدث خطأ أثناء الإرسال، تأكد من اتصالك بالإنترنت.");
+      }
+    }).catch(error => {
+      alert("حدث خطأ غير متوقع، يرجى المحاولة لاحقاً.");
+    });
+  });
+
+  // تسجيل الخروج الآمن (حذف الجلسة فقط وليس كل قاعدة البيانات)
+  function handleLogout() {
+    if(confirm("هل أنت متأكد من رغبتك في الخروج من بوابة الزمن؟")) {
+      localStorage.removeItem("active_session");
+      window.location.href = "login.html"; 
+    }
+  }
+
+  window.onload = loadProfile;
+</script>
+</body>
+</html>

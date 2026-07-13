@@ -1,0 +1,350 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قلعة قايتباي - حارس البحر</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="stylesheet" href="enhancements.css" />
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background: url(Alexandria.jpg) no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(0, 0, 30, 0.9);
+      padding: 15px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      color: #90ee90;
+      border-bottom: 2px solid gold;
+      z-index: 1000;
+    }
+
+    /* صناديق المحتوى الموحدة */
+    .container, .interactive-container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 25px;
+      background-color: rgba(0, 0, 0, 0.8);
+      border-radius: 20px;
+      box-sizing: border-box;
+      border: 1px solid rgba(255, 215, 0, 0.3);
+    }
+
+    /* كلاس الروبوت الموحد لحماية السكربتات */
+    .story-teller {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .story-teller img {
+      width: 160px;
+      cursor: pointer;
+      border-radius: 50%;
+      transition: 0.3s;
+      border: 3px solid gold;
+    }
+    .story-teller img:hover {
+      box-shadow: 0 0 18px gold;
+      transform: scale(1.05);
+    }
+
+    /* تنسيق التلميح النصي للإيقاف الموحد */
+    .hint {
+      font-size: 14px;
+      color: #cccccc;
+      margin-top: 4px;
+      opacity: 0.8;
+    }
+
+    h1, h2 {
+      color: #ff4b4b;
+      text-align: center;
+    }
+
+    p, label {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #f0f0f0;
+    }
+
+    /* إطار المعلومة الإضافية المنسق */
+    .info-frame {
+      border: 2px dashed gold;
+      background-color: rgba(255, 215, 0, 0.1);
+      padding: 15px 20px;
+      border-radius: 15px;
+      margin: 25px 0;
+      border-right: 8px solid gold;
+    }
+    .info-frame h3 {
+      margin-top: 0;
+      color: gold;
+      font-size: 20px;
+    }
+
+    .video-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    iframe {
+      border-radius: 12px;
+      width: 100%;
+      max-width: 450px;
+      height: 250px;
+      border: 2px solid #444;
+    }
+
+    /* معرض الصور الموحد والمهيأ للتكبير */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 30%;
+      min-width: 200px;
+      border-radius: 10px;
+      transition: 0.3s;
+      border: 1px solid gold;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 15px gold;
+    }
+
+    /* تصميم نافذة تكبير الصور الموحد (Lightbox) */
+    #custom-lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+    }
+    #custom-lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border: 3px solid gold;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+    }
+
+    .quiz input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ff4b4b;
+      margin-bottom: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      box-sizing: border-box;
+    }
+    
+    button {
+      background-color: #d50000;
+      color: white;
+      font-weight: bold;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #ff1744;
+      box-shadow: 0 0 10px #ff4b4b;
+    }
+
+    .back-link {
+      display: block;
+      background-color: #000;
+      color: #fff;
+      padding: 12px 24px;
+      text-decoration: none;
+      border-radius: 10px;
+      margin: 30px auto;
+      text-align: center;
+      width: fit-content;
+      border: 1px solid gold;
+    }
+
+    /* تحسينات الهاتف */
+    @media (max-width: 768px) {
+      .gallery img { width: 90%; }
+      iframe { height: 200px; }
+      .container, .interactive-container { margin: 10px; padding: 15px; }
+      p, label { font-size: 16px; }
+      h1 { font-size: 22px; }
+      .story-teller img { width: 130px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- نافذة تكبير الصور الموحدة للمنصة -->
+  <div id="custom-lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="صورة مكبرة">
+  </div>
+
+  <header>
+    🏆 نقاطك: <span id="points">0</span>
+  </header>
+
+  <div class="story-teller">
+    <!-- حماية التحكم باللمس والنطق المحمي المانع للتداخل البرمجي الخارجي -->
+    <img src="anobi4.jpg" alt="أنوبي" 
+         onclick="event.stopPropagation(); playPerfectStory()" 
+         ondblclick="event.stopPropagation(); stopStory()">
+    <p style="color: gold; font-weight: bold; margin-bottom: 0;">أنوبي</p>
+    <p class="hint">(اضغط مرتين للإيقاف)</p>
+  </div>
+
+  <div class="container">
+    <h1>🏰 قلعة قايتباي - حارس البحر</h1>
+
+    <div id="story">
+      <p>بُنيت القلعة عام 1477م بأمر من السلطان الأشرف قايتباي لحماية السواحل المصرية من الغزو البحري. تقع القلعة في نهاية جزيرة فاروس بالإسكندرية.</p>
+      <p>المثير للدهشة أن القلعة بُنيت في نفس موقع **منارة الإسكندرية القديمة** التي دمرها زلزال قوي، بل واستخدم السلطان بعض أحجار المنارة الضخمة في بناء أسوار القلعة!</p>
+    </div>
+
+    <div class="info-frame">
+      <h3>💡 معلومة إضافية</h3>
+      <p>تعتبر قلعة قايتباي من أقوى القلاع الدفاعية في حوض البحر المتوسط قديماً، حيث صُممت بجدران مزدوجة وسراديب سرية كانت تستخدم لتخزين الأسلحة وتسهيل حركة الجنود بعيداً عن أعين الأعداء.</p>
+    </div>
+  </div>
+
+  <div class="interactive-container">
+    <h2>📺 فيديوهات تعريفية</h2>
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/6vLbfJcCtVo?enablejsapi=1" title="تاريخ قلعة قايتباي" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/LKsstTjtU0I?enablejsapi=1" title="جولة داخل القلعة" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/WkG0thEp5bU?enablejsapi=1" title="مشاهد من القلعة" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <h2>🖼️ معرض الصور</h2>
+    <div class="gallery">
+      <!-- ربط الصور بنظام الـ Lightbox الموحد للموقع -->
+      <img src="قايتباي.jpg" alt="قلعة قايتباي من الخارج" onclick="openLightbox(this.src)">
+      <img src="قلعة قايتباي.jpg" alt="داخل القلعة" onclick="openLightbox(this.src)">
+      <img src="Alex.jpg" alt="إطلالة على البحر" onclick="openLightbox(this.src)">
+      <img src="قلعة قايتباي - الاسكندرية.jpg" alt="مشاهد من قلعة قايتباي" onclick="openLightbox(this.src)">
+    </div>
+
+    <h2>🧠 اختبر معلوماتك!</h2>
+    <form class="quiz">
+      <label>1. في أي مدينة تقع قلعة قايتباي؟</label>
+      <input type="text" id="q1" placeholder="اكتب اسم المدينة">
+
+      <label>2. من أمر ببناء القلعة؟</label>
+      <input type="text" id="q2" placeholder="اكتب اسم السلطان">
+
+      <label>3. بُنيت القلعة على أنقاض أحد عجائب الدنيا السبع، فما هو؟</label><br>
+      <input type="radio" name="q3" value="خطأ"> الأهرامات<br>
+      <input type="radio" name="q3" value="صحيح"> منارة الإسكندرية<br>
+      <input type="radio" name="q3" value="خطأ"> حدائق بابل<br>
+
+      <button type="button" onclick="checkAnswer()">تحقق من الإجابات</button>
+      <div id="result"></div>
+    </form>
+  </div>
+
+  <a class="back-link" href="home.html">🔙 العودة للرئيسية</a>
+
+  <script src="core.js"></script>
+  <script src="site-fixes.js"></script>
+  <script src="story-lock.js"></script>
+  <script src="image-lightbox.js"></script>
+  <script src="quiz-enhancer.js"></script>
+
+  <script>
+    // 1. إدارة النقاط المشتركة للمستكشف
+    let points = localStorage.getItem("points") ? parseInt(localStorage.getItem("points")) : 0;
+    document.getElementById("points").innerText = points;
+
+    // 2. دالة فتح تكبير الصور الموحدة (Lightbox)
+    function openLightbox(src) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('custom-lightbox').style.display = 'flex';
+    }
+
+    // 3. دالة الإيقاف السريع عند الضغط مرتين بالتتابع
+    function stopStory() {
+      window.speechSynthesis.cancel();
+    }
+
+    // 4. نظام النطق الاحترافي والفلترة النقية من الرموز التعبيرية والأرقام
+    function playPerfectStory() {
+      window.speechSynthesis.cancel(); // تصفير دائم قبل بدء نطق جديد
+
+      // صياغة النص النقي وحل مشكلة الأرقام والتواريخ برمجياً لراحة الطلاب
+      const storyToRead = "أهلاً بك يا بطل في قلعة قايتباي، هنا تبدأ حكاية الحارس التاريخي لعروس البحر، استعد لرحلة ممتعة. بُنيت القلعة عام ألف وأربعمائة وسبعة وسبعين ميلادية بأمر من السلطان الأشرف قايتباي لحماية السواحل المصرية من الغزو البحري. تقع القلعة في نهاية جزيرة فاروس بالإسكندرية. المثير للدهشة أن القلعة بُنيت في نفس موقع منارة الإسكندرية القديمة التي دمرها زلزال قوي، بل واستخدم السلطان بعض أحجار المنارة الضخمة في بناء أسوار القلعة. معلومة إضافية، تعتبر قلعة قايتباي من أقوى القلاع الدفاعية في حوض البحر المتوسط قديماً، حيث صُممت بجدران مزدوجة وسراديب سرية كانت تستخدم لتخزين الأسلحة وتسهيل حركة الجنود بعيداً عن أعين الأعداء.";
+
+      const utterance = new SpeechSynthesisUtterance(storyToRead);
+      utterance.lang = "ar-SA"; // الصوت الفصيح المستقر
+      utterance.rate = 0.85;    // الوتيرة الهادئة المناسبة للأطفال
+      utterance.pitch = 0.9;    // نبرة الصوت المريحة
+
+      const voices = window.speechSynthesis.getVoices();
+      const arabicVoices = voices.filter(v => v.lang.startsWith('ar'));
+      const bestVoice = arabicVoices.find(v => v.name.includes('Premium') || v.name.includes('Google') || v.name.includes('Online')) || arabicVoices[0];
+      
+      if (bestVoice) {
+        utterance.voice = bestVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // 5. نظام تقييم الإجابات المطور بالدعم الصوتي النقي
+    function checkAnswer() {
+      const q1 = document.getElementById("q1").value.trim();
+      const q2 = document.getElementById("q2").value.trim();
+      const q3 = document.querySelector('input[name="q3"]:checked');
+      const result = document.getElementById("result");
+
+      let score = 0;
+      if (q1.includes("الإسكندرية") || q1.includes("اسكندرية")) score++;
+      if (q2.includes("قايتباي")) score++;
+      if (q3 && q3.value === "صحيح") score++;
+
+      window.speechSynthesis.cancel();
+      let feedbackVoice = new SpeechSynthesisUtterance();
+      feedbackVoice.lang = "ar-SA";
+
+      if (score === 3) {
+        result.textContent = "بطل حقيقي! إجاباتك كاملة وصحيحة ✅";
+        result.style.color = "#90ee90";
+        points += 10;
+        localStorage.setItem("points", points);
+        document.getElementById("points").innerText = points;
+
+        feedbackVoice.text = "أحسنت يا بطل! أنت مؤرخ صغير رائع، كل إجاباتك صحيحة.";
+        window.speechSynthesis.speak(feedbackVoice);
+      } else {
+        result.textContent = `لقد أجبت على ${score} من 3. حاول مرة أخرى! ❌`;
+        result.style.color = "tomato";
+
+        feedbackVoice.text = "لا بأس يا بطل، حاول مرة أخرى لتجمع النقاط وتجد الحل الصحيح.";
+        window.speechSynthesis.speak(feedbackVoice);
+      }
+    }
+  </script>
+</body>
+</html>
