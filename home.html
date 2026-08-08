@@ -29,7 +29,6 @@
       background-color: var(--dark-blue);
     }
 
-    /* الطبقة الزجاجية الخلفية المعززة بالتدرج الملكي */
     .overlay {
       background: linear-gradient(135deg, rgba(2, 11, 36, 0.93), rgba(10, 25, 49, 0.85));
       min-height: 100vh;
@@ -38,7 +37,6 @@
       position: relative;
     }
 
-    /* مصفوفة الرموز الفرعونية الطافية والمتحركة في الخلفية */
     .hieroglyph-bg {
       position: fixed;
       top: 0;
@@ -52,14 +50,13 @@
 
     .glyph {
       position: absolute;
-      color: rgba(255, 215, 0, 0.07); /* شفافية مثالية لعدم تشتيت القارئ */
+      color: rgba(255, 215, 0, 0.07);
       font-size: clamp(40px, 6vw, 80px);
       font-family: Arial, sans-serif;
       user-select: none;
       animation: floatGlyph 20s infinite ease-in-out alternate;
     }
 
-    /* ضبط مسارات ومواقيت حركة الرموز بطريقة عشوائية احترافية */
     .glyph:nth-child(1) { left: 8%; top: 15%; animation-delay: 0s; animation-duration: 18s; }
     .glyph:nth-child(2) { left: 88%; top: 25%; animation-delay: 3s; animation-duration: 22s; }
     .glyph:nth-child(3) { left: 12%; top: 65%; animation-delay: 1.5s; animation-duration: 25s; }
@@ -74,7 +71,6 @@
       100% { transform: translateY(-80px) translateX(-10px) rotate(360deg) scale(1); }
     }
 
-    /* جعل المحتوى الرئيسي فوق الخلفية المتحركة لقابلية النقر الكاملة */
     .main-content-wrapper {
       position: relative;
       z-index: 10;
@@ -83,7 +79,6 @@
       min-height: 100vh;
     }
 
-    /* زر القائمة العائم المطور بمؤثرات ثلاثية الأبعاد */
     .profile-btn {
       position: absolute;
       top: 25px;
@@ -107,13 +102,11 @@
       box-shadow: 0 0 35px var(--light-gold); 
     }
 
-    /* القسم الرئيسي البديع */
     .hero-section { 
       text-align: center; 
       padding: 90px 20px 40px 20px; 
     }
     
-    /* تأثير الوميض الذهبي المتحرك على العنوان الملكي */
     h1 { 
       font-size: clamp(28px, 6vw, 48px); 
       background: linear-gradient(to right, #d4af37 20%, #ffd700 40%, #ffd700 60%, #d4af37 80%);
@@ -147,7 +140,6 @@
       margin-bottom: 25px; 
     }
     
-    /* هالة مقدسة متحركة حول صورة أنوبي */
     .anobi-img {
       width: 170px; 
       height: 170px;
@@ -184,6 +176,7 @@
       border: 3px solid var(--primary-gold);
       position: relative;
       animation: float 3s ease-in-out infinite;
+      cursor: pointer;
     }
 
     @keyframes float {
@@ -191,7 +184,147 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* شبكة قائمة القصص الاحترافية بتأثير الزجاج البلوري الفاخر */
+    /* تصميم نافذة المساعد الذكي (أنوبي) التفاعلية مع دعم الصوت */
+    .ai-chat-widget {
+      position: fixed;
+      bottom: 25px;
+      left: 25px;
+      z-index: 1500;
+    }
+
+    .ai-toggle-btn {
+      background: linear-gradient(135deg, var(--light-gold), var(--primary-gold));
+      border: 2px solid white;
+      color: var(--dark-blue);
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4), var(--neon-gold);
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ai-toggle-btn:hover {
+      transform: scale(1.05);
+      background: white;
+    }
+
+    .ai-chat-box {
+      position: absolute;
+      bottom: 70px;
+      left: 0;
+      width: 340px;
+      height: 460px;
+      background: var(--glass-dark);
+      backdrop-filter: blur(25px);
+      border: 2px solid var(--primary-gold);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .ai-chat-box.active {
+      display: flex;
+    }
+
+    .ai-chat-header {
+      background: rgba(212, 175, 55, 0.2);
+      padding: 12px 15px;
+      font-weight: 900;
+      color: var(--light-gold);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .ai-chat-messages {
+      flex: 1;
+      padding: 12px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .ai-message {
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 85%;
+      line-height: 1.4;
+    }
+
+    .ai-message.bot {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border-right: 3px solid var(--primary-gold);
+      align-self: flex-start;
+    }
+
+    .ai-message.user {
+      background: var(--primary-gold);
+      color: var(--dark-blue);
+      font-weight: bold;
+      align-self: flex-end;
+    }
+
+    .ai-chat-input-area {
+      padding: 10px;
+      background: rgba(0,0,0,0.3);
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    .ai-chat-input-area input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,215,0,0.3);
+      background: rgba(255,255,255,0.08);
+      color: white;
+      font-family: 'Cairo', sans-serif;
+      outline: none;
+    }
+
+    .ai-mic-btn {
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid var(--light-gold);
+      color: var(--light-gold);
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    .ai-mic-btn:hover {
+      background: var(--light-gold);
+      color: var(--dark-blue);
+    }
+
+    .ai-chat-input-area button.send-btn {
+      background: var(--light-gold);
+      border: none;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      color: var(--dark-blue);
+      transition: 0.2s;
+    }
+
+    .ai-chat-input-area button.send-btn:hover {
+      background: white;
+    }
+
     .stories-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -247,7 +380,6 @@
       color: #000;
     }
 
-    /* القائمة الجانبية الأنيقة والمطورة */
     .sidebar {
       position: fixed;
       right: -400px; 
@@ -291,7 +423,6 @@
       box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); 
     }
     
-    /* شارة اللقب الحركية الجديدة */
     .title-badge {
       display: inline-block;
       background: linear-gradient(135deg, #8a6f27, var(--dark-gold));
@@ -300,10 +431,54 @@
       border-radius: 20px;
       font-size: 14px;
       font-weight: 700;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
       border: 1px solid var(--light-gold);
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+    }
+    
+    .progress-container {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 16px;
+      border-radius: 14px;
+      margin: 15px 0;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      text-align: right;
+    }
+    
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--light-gold);
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 12px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--dark-gold), var(--light-gold));
+      width: 0%;
+      border-radius: 6px;
+      transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 10px var(--light-gold);
+    }
+
+    .progress-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: #bbb;
+      margin-top: 6px;
     }
     
     .info-row {
@@ -349,7 +524,6 @@
     }
     .logout-btn:hover { background: #b71c1c; box-shadow: 0 0 25px rgba(211, 47, 47, 0.6); transform: translateY(-2px); }
 
-    /* نموذج المراسلة المطور الملكي */
     .contact-box { 
       background: rgba(3, 16, 46, 0.85); 
       padding: 25px; 
@@ -383,7 +557,6 @@
       transition: 0.3s;
       resize: vertical;
     }
-
     .contact-box input:focus, 
     .contact-box textarea:focus {
       outline: none;
@@ -412,7 +585,6 @@
       box-shadow: 0 8px 25px rgba(255, 215, 0, 0.5);
     }
 
-    /* الـ QR Code */
     .qr-box { 
       text-align: center; 
       margin-top: 35px; 
@@ -455,7 +627,6 @@
 
 <div class="overlay">
   
-  <!-- طبقة الرموز الفرعونية العائمة -->
   <div class="hieroglyph-bg">
     <div class="glyph">𓂀</div>
     <div class="glyph">☥</div>
@@ -466,7 +637,6 @@
     <div class="glyph">𓆣</div>
   </div>
 
-  <!-- مغلف المحتوى الأساسي لضمان بقائه فوق الخلفية دائماً -->
   <div class="main-content-wrapper">
     <button class="profile-btn" onclick="toggleSidebar()">👤</button>
 
@@ -475,9 +645,9 @@
       
       <div class="profile-info">
         <h2 style="color: var(--light-gold); margin-top: 0; font-size: 26px;">سجل المستكشف</h2>
-        <img id="avatar-img" src="boy.jpg" alt="Profile">
         
-        <!-- اللقب الفرعوني المتطور والمبني على النقاط -->
+        <img id="avatar-img" src="girl2.jpg" alt="Profile">
+        
         <div>
           <span class="title-badge" id="disp-title">👑 جارٍ التحميل...</span>
         </div>
@@ -496,13 +666,26 @@
         </div>
 
         <div class="info-row">
-          <span>⭐ النقاط:</span>
+          <span>⭐️ النقاط:</span>
           <strong id="disp-points" style="color: var(--light-gold); font-size: 22px;">0</strong>
+        </div>
+
+        <div class="progress-container">
+          <div class="progress-header">
+            <span id="next-rank-name">الرتبة التالية: جارٍ الحساب...</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+          </div>
+          <div class="progress-footer">
+            <span id="points-current-label">النقاط الحالية: 0</span>
+            <span id="points-needed-label">متبقي: 0 نقطة</span>
+          </div>
         </div>
 
         <button class="logout-btn" onclick="handleLogout()">الخروج من بوابة الزمن</button>
       </div>
-
       <div class="contact-box">
         <h3>📧 أرسل رسالة لأنوبي</h3>
         <form id="contactForm" action="https://formspree.io/f/mqablzqy" method="POST">
@@ -514,7 +697,7 @@
       </div>
 
       <div class="qr-box">
-        <p style="font-size:17px; font-weight:900; color:var(--light-gold); margin-bottom:8px;">🏛️ الصرح المعرفي</p>
+        <p style="font-size:17px; font-weight:900; color:var(--light-gold); margin-bottom:8px;">🏛 الصرح المعرفي</p>
         <p style="font-size:14px; margin-bottom:12px; color: #ddd;">امسح الكود لزيارة افتراضية للمتحف المصري</p>
         <img src="المتحف المصري _qr_code.png" alt="QR Code">
       </div>
@@ -526,15 +709,34 @@
       <div class="anobi-container">
         <img src="anobi.jpg" class="anobi-img" alt="Anubi" onclick="speakWelcome()">
         <br>
-        <div class="speech-box">أنا أنوبي، رفيقك في رحلة عبر الزمن! ✨</div>
+        <div class="speech-box" onclick="toggleAiChat()">أنا أنوبي، رفيقك في رحلة عبر الزمن! ✨ (اضغط هنا أو تحدث معي)</div>
       </div>
     </main>
+
+    <!-- عنصر مساعد الذكاء الاصطناعي (أنوبي المتفاعل مع الصوت والميكروفون) -->
+    <div class="ai-chat-widget">
+      <button class="ai-toggle-btn" onclick="toggleAiChat()">🤖 اسأل أنوبي أو اطلب قصة</button>
+      <div class="ai-chat-box" id="aiChatBox">
+        <div class="ai-chat-header">
+          <span>مرشد الزمن أنوبي 🏺</span>
+          <button onclick="toggleAiChat()" style="background:none; border:none; color:var(--light-gold); font-size:18px; cursor:pointer;">✕</button>
+        </div>
+        <div class="ai-chat-messages" id="aiMessages">
+          <div class="ai-message bot">أهلاً بك يا بطل! اسألني عن أي معلم، تاريخ فرعوني، أو اطلب مني أن أروي لك قصة تاريخية مذهلة. يمكنك استخدام الميكروفون 🎤 للتحدث معي مباشرة!</div>
+        </div>
+        <div class="ai-chat-input-area">
+          <button class="ai-mic-btn" onclick="startVoiceRecognition()" title="تحدث بصوتك">🎤</button>
+          <input type="text" id="aiUserInput" placeholder="اكتب سؤالك أو اطلب قصة..." onkeypress="handleAiKeyPress(event)">
+          <button class="send-btn" onclick="sendGeminiMessage()">إرسال</button>
+        </div>
+      </div>
+    </div>
 
     <h2>📜 اختر قصة:</h2>
 
     <nav class="stories-grid">
-      <a href="sirdab.html" class="story-card"><span>🏛️ سراديب الخلود - وادي الملوك</span></a>
-      <a href="story2.html" class="story-card"><span>🧜🏻‍♀ عروس القناة - الإسماعيلية</span></a>
+      <a href="sirdab.html" class="story-card"><span>🏛 سراديب الخلود - وادي الملوك</span></a>
+      <a href="story2.html" class="story-card"><span>🧜🏻‍♀️ عروس القناة - الإسماعيلية</span></a>
       <a href="story3.html" class="story-card"><span>🏺 عاصمة الفخار - قرية تونس</span></a>
       <a href="story4.html" class="story-card"><span>🏰 حارس البحر - قلعة قايتباي</span></a>
       <a href="story5.html" class="story-card"><span>🏙 المدينة المفقودة - هيراكليون</span></a>
@@ -543,7 +745,7 @@
       <a href="intro.html" class="story-card"><span>❓ من نحن ؟</span></a>
     </nav>
 
-    <p style="text-align:center; font-weight:bold; color:var(--light-gold); margin: 40px 0; font-size: 19px; text-shadow: 0 2px 5px rgba(0,0,0,0.5);">👆 اضغط على أنوبي لتبدأ مغامرتك!</p>
+    <p style="text-align:center; font-weight:bold; color:var(--light-gold); margin: 40px 0; font-size: 19px; text-shadow: 0 2px 5px rgba(0,0,0,0.5);">👆 اضغط على أنوبي ليرحب بك ويحكي لك قصة أو يجيب عن أسئلتك!</p>
     <p style="text-align:center; font-weight:bold; color:var(--light-gold); margin: 50px 0; letter-spacing: 1px; font-size: 18px;">🏺 "من لا ماضي له.. لا حاضر له" - استمر في الاستكشاف! 🏺</p>
 
     <footer>
@@ -555,12 +757,202 @@
 
 <script src="core.js"></script>
 <script>
-  // فتح وإغلاق القائمة الجانبية
+  // 🔑 مفتاح Google Gemini API الخاص بكِ
+  const GEMINI_API_KEY = "AQ.Ab8RN6JXoxaM0xtlHi2LtremrMrtUelmBGW9SPMkbg_1dcMzig";
+
   function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
   }
 
-  // إظهار وإخفاء كلمة المرور الأصلية من الجلسة النشطة
+  function toggleAiChat() {
+    const chatBox = document.getElementById("aiChatBox");
+    chatBox.classList.toggle("active");
+  }
+
+  function handleAiKeyPress(e) {
+    if (e.key === 'Enter') {
+      sendGeminiMessage();
+    }
+  }
+
+  // 🔊 دالة تحويل النص إلى صوت طبيعي ومحسن ونطق أفضل (مع حذف تام للرموز التعبيرية والرموز الخاصة)
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) return;
+
+    window.speechSynthesis.cancel();
+
+    // إزالة تامة لجميع الرموز التعبيرية وعلامات الترقيم المزعجة في النطق
+    const cleanText = text
+      .replace(/[*_#`~:-]/g, ' ')
+      .replace(/\p{Extended_Pictographic}/gu, '')
+      .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F900}-\u{1F9FF}\u{1FA70}-\u{1FAFF}\u{200D}\u{FE0F}]/gu, '')
+      .trim();
+
+    if (!cleanText) return;
+
+    const utterance = new SpeechSynthesisUtterance(cleanText);
+    utterance.lang = "ar-EG"; 
+    utterance.rate = 0.90;   // ضبط السرعة لتكون هادئة وطبيعية جداً
+    utterance.pitch = 1.05;  // تحسين نبرة وطبقة الصوت لتصبح ودودة وأكثر وضوحاً
+
+    const voices = window.speechSynthesis.getVoices();
+    // البحث عن أفضل صوت طبيعي متاح (مثل أصوات جوجل أو مايكروسوفت العربية)
+    const naturalVoice = voices.find(v => 
+      v.lang.startsWith('ar') && (
+        v.name.includes('Natural') || 
+        v.name.includes('Google') || 
+        v.name.includes('Salma') || 
+        v.name.includes('Shakir') ||
+        v.name.includes('Online') ||
+        v.name.includes('Maged')
+      )
+    ) || voices.find(v => v.lang.startsWith('ar'));
+
+    if (naturalVoice) {
+      utterance.voice = naturalVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  }
+
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
+  }
+
+  // 🎤 تفعيل استماع المتحدث والتفاعل معه عبر الميكروفون (Speech Recognition)
+  function startVoiceRecognition() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      alert("متصفحك لا يدعم الإدخال الصوتي المباشر، يرجى الكتابة.");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "ar-EG";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    const micBtn = document.querySelector(".ai-mic-btn");
+    const inputEl = document.getElementById("aiUserInput");
+
+    recognition.onstart = function() {
+      if (micBtn) micBtn.style.background = "#e74c3c"; // تلوين الزر بالاحمر للدلالة على بدء الاستماع والتفاعل
+      if (inputEl) inputEl.placeholder = "🎙 أنوبي يستمع إليك الآن... تحدث بوضوح!";
+    };
+
+    recognition.onresult = function(event) {
+      const speechText = event.results[0][0].transcript;
+      if (inputEl) {
+        inputEl.value = speechText;
+      }
+      sendGeminiMessage(); // إرسال الرسالة تلقائياً والتفاعل مع كلام المستخدم فور انتهائه
+    };
+
+    recognition.onerror = function(event) {
+      console.error("خطأ الميكروفون:", event.error);
+      if (event.error === 'not-allowed') {
+        alert("يرجى السماح للمتصفح بالوصول للميكروفون من إعدادات المتصفح 🎙");
+      } else if (event.error === 'no-speech') {
+        alert("لم نتمكن من سماع أي صوت، حاول التحدث مجدداً.");
+      }
+      if (micBtn) micBtn.style.background = "";
+      if (inputEl) inputEl.placeholder = "اكتب سؤالك أو اطلب قصة...";
+    };
+
+    recognition.onend = function() {
+      if (micBtn) micBtn.style.background = "";
+      if (inputEl) inputEl.placeholder = "اكتب سؤالك أو اطلب قصة...";
+    };
+
+    recognition.start();
+  }
+
+  // 💬 إرسال الرسالة إلى Google Gemini وجلب الإجابة
+  async function sendGeminiMessage() {
+    const inputEl = document.getElementById("aiUserInput");
+    const userText = inputEl.value.trim();
+    if (!userText) return;
+
+    const messagesContainer = document.getElementById("aiMessages");
+
+    const userMsgDiv = document.createElement("div");
+    userMsgDiv.className = "ai-message user";
+    userMsgDiv.textContent = userText;
+    messagesContainer.appendChild(userMsgDiv);
+
+    inputEl.value = "";
+
+    const botMsgDiv = document.createElement("div");
+    botMsgDiv.className = "ai-message bot";
+    botMsgDiv.textContent = "جاري التفكير والبحث في برديات الزمن... ⏳";
+    messagesContainer.appendChild(botMsgDiv);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+    try {
+      const replyText = await fetchGeminiResponse(userText);
+      botMsgDiv.textContent = replyText;
+      
+      // نطق الإجابة تلقائياً بعد جلبها دون رموز تعبيرية
+      speakText(replyText);
+    } catch (error) {
+      console.error(error);
+      botMsgDiv.textContent = "عذراً يا بطل! حدث خطأ أثناء الاتصال بالمرشد أنوبي. جاري التأكد من الاستجابة...";
+    }
+
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+  }
+
+  // 🔗 طلب الاستجابة الذكية من Gemini
+  async function fetchGeminiResponse(userPrompt) {
+    const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
+    const apiKey = GEMINI_API_KEY.trim();
+
+    const promptText = `أنت 'أنوبي'، المرشد السياحي والتاريخي المصري الذكي والمشوّق للأطفال والشباب.
+مهامك:
+- تجيب عن الأسئلة التاريخية والجغرافية المصرية بدقة، أناقة، وإيجاز مشجع ومبسط.
+- إذا طلب منك المستكشف قصة، تحكيها له بأسلوب روائي حماسي ممتع مليء بالمغامرة والشغف.
+- تستخدم لغة عربية فصيحة ومبسطة وتتفاعل بروح الصديق المساعد.
+
+سؤال أو طلب المستكشف: ${userPrompt}`;
+
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-goog-api-key": apiKey
+      },
+      body: JSON.stringify({
+        contents: [
+          {
+            parts: [
+              {
+                text: promptText
+              }
+            ]
+          }
+        ]
+      })
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      const errorMsg = errorData.error?.message || `رمز الحالة: ${response.status}`;
+      throw new Error(`خطأ في الاستجابة: ${errorMsg}`);
+    }
+
+    const data = await response.json();
+    const replyText = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (replyText) {
+      return replyText;
+    } else {
+      throw new Error("لم تتلقَّ أي إجابة نصية من المساعد.");
+    }
+  }
+
+  // 👤 إدارة الملف الشخصي والرتب
   let passHidden = true;
   function togglePass() {
     const passField = document.getElementById("disp-pass");
@@ -585,40 +977,68 @@
     }
   }
 
-  // محرك احتساب الألقاب الديناميكي متوافق مع نظام (فرعون/ملكة)
-  function calculateTitle(points, gender) {
+  function getRankDetails(points, gender) {
     const isFemale = gender === 'female';
-    
-    if (points >= 1000) return isFemale ? "👑 ملكة أسطورية خارقة" : "👑 فرعون أسطوري خارق";
-    if (points >= 900)  return isFemale ? "📝 كاتبة المعابد الملكية" : "📝 كاتب المعابد الملكي";
-    if (points >= 800)  return isFemale ? "☀️ حاملة مفتاح الحياة" : "☀️ حامل مفتاح الحياة";
-    if (points >= 700)  return isFemale ? "🦅 عالمة المصريات البارعة" : "🦅 عالم المصريات البارع";
-    if (points >= 600)  return isFemale ? "⚔️ أميرة الفراعنة الشجاعة" : "⚔️ أمير الفراعنة الشجاع";
-    if (points >= 500)  return isFemale ? "📜 الحكيمة الفرعونية الكبيرة" : "📜 الحكيم الفرعوني الكبير";
-    if (points >= 400)  return isFemale ? "🔺 محققة أسرار الأهرامات" : "🔺 محقق أسرار الأهرامات";
-    if (points >= 300)  return isFemale ? "🔐 صائدة الأسرار الخفية" : "🔐 صائد الأسرار الخفية";
-    if (points >= 200)  return isFemale ? "🏰 حارسة التاريخ المصري" : "🏰 حارس التاريخ المصري";
-    if (points >= 150)  return isFemale ? "🏺 خبيرة الآثار المتميزة" : "🏺 خبير الآثار المتميز";
-    if (points >= 100)  return isFemale ? "⭐ المستكشفة المتميزة" : "⭐ المستكشف المتميز";
-    if (points >= 50)   return isFemale ? "🔍 المستكشفة" : "🔍 المستكشف";
-    
-    return isFemale ? "👸🏽 ملكة مبتدئة" : "🤴🏽 فرعون مبتدئ";
+    const ranks = [
+      { min: 0, max: 50, title: isFemale ? "👸🏽 ملكة مبتدئة" : "🤴🏽 فرعون مبتدئ", next: isFemale ? "المستكشفة" : "المستكشف" },
+      { min: 50, max: 100, title: isFemale ? "🔍 المستكشفة" : "🔍 المستكشف", next: isFemale ? "المستكشفة المتميزة" : "المستكشف المتميز" },
+      { min: 100, max: 150, title: isFemale ? "⭐️ المستكشفة المتميزة" : "⭐️ المستكشف المتميز", next: isFemale ? "خبيرة الآثار المتميزة" : "خبير الآثار المتميز" },
+      { min: 150, max: 200, title: isFemale ? "🏺 خبيرة الآثار المتميزة" : "🏺 خبير الآثار المتميز", next: isFemale ? "حارسة التاريخ المصري" : "حارس التاريخ المصري" },
+      { min: 200, max: 300, title: isFemale ? "🏰 حارسة التاريخ المصري" : "🏰 حارس التاريخ المصري", next: isFemale ? "صائدة الأسرار الخفية" : "صائد الأسرار الخفية" },
+      { min: 300, max: 400, title: isFemale ? "🔐 صائدة الأسرار الخفية" : "🔐 صائد الأسرار الخفية", next: isFemale ? "محققة أسرار الأهرامات" : "محقق أسرار الأهرامات" },
+      { min: 400, max: 500, title: isFemale ? "🔺 محققة أسرار الأهرامات" : "🔺 محقق أسرار الأهرامات", next: isFemale ? "الحكيمة الفرعونية الكبيرة" : "الحكيم الفرعوني الكبير" },
+      { min: 500, max: 600, title: isFemale ? "📜 الحكيمة الفرعونية الكبيرة" : "📜 الحكيم الفرعوني الكبير", next: isFemale ? "أميرة الفراعنة الشجاعة" : "أمير الفراعنة الشجاع" },
+      { min: 600, max: 700, title: isFemale ? "⚔️ أميرة الفراعنة الشجاعة" : "⚔️ أمير الفراعنة الشجاع", next: isFemale ? "عالمة المصريات البارعة" : "عالم المصريات البارع" },
+      { min: 700, max: 800, title: isFemale ? "🦅 عالمة المصريات البارعة" : "🦅 عالم المصريات البارع", next: isFemale ? "حاملة مفتاح الحياة" : "حامل مفتاح الحياة" },
+      { min: 800, max: 900, title: isFemale ? "☀️ حاملة مفتاح الحياة" : "☀️ حامل مفتاح الحياة", next: isFemale ? "كاتبة المعابد الملكية" : "كاتب المعابد الملكي" },
+      { min: 900, max: 1000, title: isFemale ? "📝 كاتبة المعابد الملكية" : "📝 كاتب المعابد الملكي", next: isFemale ? "ملكة أسطورية خارقة" : "فرعون أسطوري خارق" },
+      { min: 1000, max: 1000, title: isFemale ? "👑 ملكة أسطورية خارقة" : "👑 فرعون أسطوري خارق", next: "الرتبة القصوى مبلِغ الخلود!" }
+    ];
+
+    let currentRank = ranks[0];
+    for (let i = 0; i < ranks.length; i++) {
+      if (points >= ranks[i].min) {
+        currentRank = ranks[i];
+      }
+    }
+
+    if (points >= 1000) {
+      return {
+        title: currentRank.title,
+        nextName: "الرتبة القصوى مكتملة 🏛",
+        percent: 100,
+        needed: 0
+      };
+    }
+
+    const spanRange = currentRank.max - currentRank.min;
+    const earnedInLevel = points - currentRank.min;
+    const percent = Math.min(Math.floor((earnedInLevel / spanRange) * 100), 100);
+    const needed = currentRank.max - points;
+
+    return {
+      title: currentRank.title,
+      nextName: currentRank.next,
+      percent: percent,
+      needed: needed
+    };
   }
 
-  // تحميل بيانات المستخدم وحساب الألقاب من الجلسة النشطة (active_session)
   function loadProfile() {
     const sessionData = localStorage.getItem("active_session");
     
-    // إذا لم تكن هناك جلسة نشطة، أعده إلى بوابة الدخول
     if (!sessionData) {
-      window.location.href = "login.html";
+      window.location.href = "index.html";
       return;
     }
 
     const user = JSON.parse(sessionData);
     const fullName = user.originalName || "مستكشف";
     const firstName = fullName.split(' ')[0];
-    const gender = user.gender || "male";
+    
+    const gender = user.gender || "female";
+    document.getElementById("avatar-img").src = (gender === "male") ? "boy.jpg" : "girl2.jpg";
+    
     const points = user.points || 0;
     
     document.getElementById("disp-user").textContent = fullName;
@@ -631,68 +1051,34 @@
     
     document.getElementById("disp-points").textContent = points;
     
-    const userTitle = calculateTitle(points, gender);
-    document.getElementById("disp-title").textContent = userTitle;
+    const rankInfo = getRankDetails(points, gender);
+    document.getElementById("disp-title").textContent = rankInfo.title;
     
-    document.getElementById("avatar-img").src = (gender === "female") ? "girl2.jpg" : "boy.jpg";
+    document.getElementById("next-rank-name").textContent = `الهدف: ${rankInfo.nextName}`;
+    document.getElementById("progress-percent").textContent = `${rankInfo.percent}%`;
+    document.getElementById("progress-fill").style.width = `${rankInfo.percent}%`;
+    document.getElementById("points-current-label").textContent = `النقاط: ${points}`;
+    document.getElementById("points-needed-label").textContent = rankInfo.needed > 0 ? `متبقي للرتبة التالية: ${rankInfo.needed} نقطة` : `أنت في قمة المجد التاريخي! 👑`;
   }
 
-  // نطق الترحيب بصوت عربي مع استخدام الاسم الأول ولقب المغامرة الحالي
   function speakWelcome() {
     const sessionData = localStorage.getItem("active_session");
     if (!sessionData) return;
-    
     const user = JSON.parse(sessionData);
-    const fullName = user.originalName || "صديقي";
-    const firstName = fullName.split(' ')[0];
-    const currentPoints = user.points || 0;
-    const gender = user.gender || "male";
+    const fullName = user.originalName || "مستكشف";
+    const welcomeText = `أهلاً بك يا ${fullName} في مهد الحضارة. أنا أنوبي، رفيقك في رحلة عبر التاريخ المصري العريق. استعد لاكتشاف أسرار الفراعنة.`;
     
-    const userTitle = calculateTitle(currentPoints, gender).replace(/[\u2700-\u27BF]|[\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2011-\u26FF]|\uD83E[\uDC00-\uDFFF]/g, ''); 
-    
-    const msg = new SpeechSynthesisUtterance(`أهلاً بكْ يا ${firstName}.. رُتْبَتَكْ الحالية هي ${userTitle}، أنا أنوبي رفيقك، مستعدون لمتابعة المغامرة؟`);
-    msg.lang = "ar-EG";
-    speechSynthesis.cancel(); 
-    speechSynthesis.speak(msg);
+    speakText(welcomeText);
   }
 
-  // إرسال النموذج بطريقة احترافية مع التفاعل الصوتي (AJAX)
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault(); 
-    const form = e.target;
-    
-    fetch(form.action, {
-      method: form.method,
-      body: new FormData(form),
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        if (typeof SpeechSynthesisUtterance !== "undefined") {
-          const thanksMsg = new SpeechSynthesisUtterance("استلمت رسالتك بكل فخر، وسأرد عليك قريباً.");
-          thanksMsg.lang = "ar-EG";
-          window.speechSynthesis.speak(thanksMsg);
-        }
-        alert("تم إرسال رسالتك بنجاح! شكراً لتواصلك.");
-        
-        form.querySelector('textarea[name="message"]').value = '';
-        form.querySelector('input[name="email"]').value = '';
-      } else {
-        alert("حدث خطأ أثناء الإرسال، تأكد من اتصالك بالإنترنت.");
-      }
-    }).catch(error => {
-      alert("حدث خطأ غير متوقع، يرجى المحاولة لاحقاً.");
-    });
-  });
-
-  // تسجيل الخروج الآمن (حذف الجلسة فقط وليس كل قاعدة البيانات)
   function handleLogout() {
-    if(confirm("هل أنت متأكد من رغبتك في الخروج من بوابة الزمن؟")) {
-      localStorage.removeItem("active_session");
-      window.location.href = "login.html"; 
-    }
+    localStorage.removeItem("active_session");
+    window.location.href = "index.html"; 
   }
 
-  window.onload = loadProfile;
+  window.onload = function() {
+    loadProfile();
+  };
 </script>
 </body>
 </html>
