@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -755,10 +755,17 @@
   </div>
 </div>
 
+<!-- استدعاء ملف الإعدادات السري المحلي إن وجد -->
+<script src="config.js"></script>
 <script src="core.js"></script>
 <script>
-  // 🔑 مفتاح Google Gemini API الخاص بكِ
-  const GEMINI_API_KEY = "AQ.Ab8RN6JXoxaM0xtlHi2LtremrMrtUelmBGW9SPMkbg_1dcMzig";
+  // 🔑 جلب المفتاح بأمان من ملف config.js الخارجي أو من ذاكرة المتصفح
+  function getGeminiApiKey() {
+    if (typeof CONFIG !== 'undefined' && CONFIG.GEMINI_API_KEY) {
+      return CONFIG.GEMINI_API_KEY.trim();
+    }
+    return (localStorage.getItem("GEMINI_API_KEY") || "").trim();
+  }
 
   function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle("active");
@@ -775,13 +782,12 @@
     }
   }
 
-  // 🔊 دالة تحويل النص إلى صوت طبيعي ومحسن ونطق أفضل (مع حذف تام للرموز التعبيرية والرموز الخاصة)
+  // 🔊 دالة تحويل النص إلى صوت طبيعي ومحسن
   function speakText(text) {
     if (!('speechSynthesis' in window)) return;
 
     window.speechSynthesis.cancel();
 
-    // إزالة تامة لجميع الرموز التعبيرية وعلامات الترقيم المزعجة في النطق
     const cleanText = text
       .replace(/[*_#`~:-]/g, ' ')
       .replace(/\p{Extended_Pictographic}/gu, '')
@@ -792,11 +798,10 @@
 
     const utterance = new SpeechSynthesisUtterance(cleanText);
     utterance.lang = "ar-EG"; 
-    utterance.rate = 0.90;   // ضبط السرعة لتكون هادئة وطبيعية جداً
-    utterance.pitch = 1.05;  // تحسين نبرة وطبقة الصوت لتصبح ودودة وأكثر وضوحاً
+    utterance.rate = 0.90;
+    utterance.pitch = 1.05;
 
     const voices = window.speechSynthesis.getVoices();
-    // البحث عن أفضل صوت طبيعي متاح (مثل أصوات جوجل أو مايكروسوفت العربية)
     const naturalVoice = voices.find(v => 
       v.lang.startsWith('ar') && (
         v.name.includes('Natural') || 
@@ -821,7 +826,7 @@
     };
   }
 
-  // 🎤 تفعيل استماع المتحدث والتفاعل معه عبر الميكروفون (Speech Recognition)
+  // 🎤 تفعيل استماع المتحدث والتفاعل معه عبر الميكروفون
   function startVoiceRecognition() {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
@@ -838,7 +843,7 @@
     const inputEl = document.getElementById("aiUserInput");
 
     recognition.onstart = function() {
-      if (micBtn) micBtn.style.background = "#e74c3c"; // تلوين الزر بالاحمر للدلالة على بدء الاستماع والتفاعل
+      if (micBtn) micBtn.style.background = "#e74c3c";
       if (inputEl) inputEl.placeholder = "🎙 أنوبي يستمع إليك الآن... تحدث بوضوح!";
     };
 
@@ -847,7 +852,7 @@
       if (inputEl) {
         inputEl.value = speechText;
       }
-      sendGeminiMessage(); // إرسال الرسالة تلقائياً والتفاعل مع كلام المستخدم فور انتهائه
+      sendGeminiMessage();
     };
 
     recognition.onerror = function(event) {
@@ -875,6 +880,12 @@
     const userText = inputEl.value.trim();
     if (!userText) return;
 
+    const apiKey = getGeminiApiKey();
+    if (!apiKey) {
+      alert("لم يتم العثور على مفتاح Gemini API! يرجى إدخال المفتاح في ملف config.js أو تعيينه.");
+      return;
+    }
+
     const messagesContainer = document.getElementById("aiMessages");
 
     const userMsgDiv = document.createElement("div");
@@ -891,10 +902,8 @@
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
     try {
-      const replyText = await fetchGeminiResponse(userText);
+      const replyText = await fetchGeminiResponse(userText, apiKey);
       botMsgDiv.textContent = replyText;
-      
-      // نطق الإجابة تلقائياً بعد جلبها دون رموز تعبيرية
       speakText(replyText);
     } catch (error) {
       console.error(error);
@@ -905,9 +914,8 @@
   }
 
   // 🔗 طلب الاستجابة الذكية من Gemini
-  async function fetchGeminiResponse(userPrompt) {
+  async function fetchGeminiResponse(userPrompt, apiKey) {
     const url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent";
-    const apiKey = GEMINI_API_KEY.trim();
 
     const promptText = `أنت 'أنوبي'، المرشد السياحي والتاريخي المصري الذكي والمشوّق للأطفال والشباب.
 مهامك:
